@@ -15,7 +15,6 @@ import { getSaleReducer, getSalesReducer } from "../../redux/reducer/sale";
 import moment from "moment";
 
 function Sales() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const dispatch = useDispatch();
   const { sales, allSales, isFetching, error } = useSelector((state) => state.sale);
   const { loggedUser } = useSelector((state) => state.user);
@@ -105,7 +104,6 @@ function Sales() {
       ),
     },
   ];
-  ////////////////////////////////////// STATES //////////////////////////////
   const [view, setView] = useState("table");
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -113,7 +111,6 @@ function Sales() {
   const [openFilters, setOpenFilters] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     loggedUser.role == 'employee'
       ?
@@ -127,7 +124,6 @@ function Sales() {
     }
   }, [isFiltered])
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////
   const handleOpenEditModal = (sale) => {
     setOpenEditModal(true);
     dispatch(getSaleReducer(sale));

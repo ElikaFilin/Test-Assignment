@@ -28,7 +28,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateProject = ({ open, setOpen, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   let today = new Date();
   let time = today.toLocaleTimeString();
   let date = today.toLocaleDateString();
@@ -47,10 +46,8 @@ const CreateProject = ({ open, setOpen, scroll }) => {
     images: [],
     status: "active",
   };
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [projectData, setProjectData] = useState(ProjectinitialState);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
   useEffect(() => {
     setProjectData({ ...projectData, images: urls });
   }, [urls]);
@@ -58,7 +55,6 @@ const CreateProject = ({ open, setOpen, scroll }) => {
     dispatch(getSocieties());
   }, []);
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProject(projectData, navigate));

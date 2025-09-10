@@ -12,7 +12,6 @@ import { logout } from "../../redux/action/user";
 import {
   PiAlarm,
   PiBell,
-  PiGear,
   PiKeyLight,
   PiList,
   PiListChecks,
@@ -94,8 +93,7 @@ const StyledMenuItem = styled(MenuItem)(
     `
 );
 
-const Navbar = ({ setShowSidebar, showSidebar, open, setOpen }) => {
-  /////////////////////////////////////////// VARIABLES ////////////////////////////////////////////
+const Navbar = ({ setShowSidebar }) => {
   const { loggedUser } = useSelector((state) => state.user);
   const { notifications } = useSelector((state) => state.notification);
   const { pathname } = useLocation();
@@ -103,11 +101,10 @@ const Navbar = ({ setShowSidebar, showSidebar, open, setOpen }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /////////////////////////////////////////// STATES ////////////////////////////////////////////////
   const [date, setDate] = useState(new Date());
   const [openPasswordChange, setOpenPasswordChange] = useState(false);
+  const [timezone, setTimezone] = useState('');
 
-  /////////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000);
     return function cleanup() {
@@ -117,9 +114,11 @@ const Navbar = ({ setShowSidebar, showSidebar, open, setOpen }) => {
   useEffect(() => {
     dispatch(getNotifications());
     dispatch(getTasks());
+    
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setTimezone(userTimezone);
   }, []);
 
-  /////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////
   const handleLogout = () => {
     dispatch(logout(navigate));
   };
@@ -144,9 +143,11 @@ const Navbar = ({ setShowSidebar, showSidebar, open, setOpen }) => {
               <PiList className="text-[25px]" />
             </IconButton>
             <div>
-              <p className="text-sky-400 text-xl gap-1 flex items-center">
-                <PiTimerLight className="text-[25px]" /> {date.toLocaleTimeString()}
-              </p>
+              <Tooltip title={timezone ? `Timezone: ${timezone}` : ''} arrow placement="bottom">
+                <p className="text-sky-400 text-xl gap-1 flex items-center">
+                  <PiTimerLight className="text-[25px]" /> {date.toLocaleTimeString()} {timezone && `(${timezone})`}
+                </p>
+              </Tooltip>
             </div>
           </div>
 

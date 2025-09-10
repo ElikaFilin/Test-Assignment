@@ -23,16 +23,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditProject = ({ open, setOpen, openEdit, setOpenEdit, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const dispatch = useDispatch();
   const { currentProject: project, isFetching } = useSelector((state) => state.project);
   const { urls } = useSelector((state) => state.upload);
   const { societies, isFetching: societiesFetching } = useSelector((state) => state.society);
 
-  //////////////////////////////////////// STATES ////////////////////////////////////////////
   const [projectData, setProjectData] = useState(project);
 
-  //////////////////////////////////////// USE EFFEECT ////////////////////////////////////////////
   useEffect(() => {
     setProjectData(project);
   }, [project]);
@@ -43,7 +40,6 @@ const EditProject = ({ open, setOpen, openEdit, setOpenEdit, scroll }) => {
     dispatch(getSocieties());
   }, []);
 
-  //////////////////////////////////////// FUNCTION ////////////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProject(project._id, { ...projectData }));

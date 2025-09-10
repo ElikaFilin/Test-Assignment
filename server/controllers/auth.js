@@ -96,7 +96,6 @@ export const sendForgetPasswordOTP = async (req, res) => {
         const isEmailAlreadyReg = await User.findOne({ email })
 
         if (!email) return res.status(400).json({ message: 'email field is required', success: false })
-        // in forget password route, user should be registered already
         if (!isEmailAlreadyReg) return res.status(400).json({ message: `No user exist with email ${email}`, success: false })
         if (!validator.isEmail(email)) return res.status(400).json({ message: `Please provide a valid email.`, success: false })
 

@@ -7,16 +7,12 @@ import { useDispatch } from "react-redux";
 import { newpassword } from '../../redux/action/user'
 
 const ResetPassword = () => {
-  /////////////////////////////////// VARIABLES /////////////////////////////////
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  /////////////////////////////////// STATES /////////////////////////////////////
   const [OTP, setOTP] = useState({ otp: '', password: '' })
 
-  /////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  /////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleInputChange = (e) => {
     setOTP({
       ...OTP,

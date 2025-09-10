@@ -9,22 +9,17 @@ import ViewNotification from './Notification'
 
 function Notifications({ }) {
 
-    ////////////////////////////////////// VARIABLES //////////////////////////////
     const { notifications } = useSelector(state => state.notification)
     const dispatch = useDispatch()
 
-    ////////////////////////////////////// STATES //////////////////////////////
     const [openNotification, setOpenNotification] = useState(false)
     const [notificationId, setNotificationId] = useState('')
 
-    ////////////////////////////////////// USE EFFECTS //////////////////////////////
 
-    ////////////////////////////////////// FUNCTIONS //////////////////////////////
     const handleDelete = (notificationId) => {
         dispatch(deleteNotification(notificationId))
     }
 
-    ////////////////////////////////////// COMPONENTS //////////////////////////////
     const Notification = ({ notification }) => {
         const [showCloseButton, setShowCloseButton] = useState(false)
         return (

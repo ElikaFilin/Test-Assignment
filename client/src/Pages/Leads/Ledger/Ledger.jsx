@@ -12,7 +12,6 @@ import { getLeadCashbooks } from "../../../redux/action/cashbook";
 import { getLead } from "../../../redux/action/lead";
 
 const Ledger = () => {
-  /////////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const location = useLocation();
   const dispatch = useDispatch();
   const { leadId } = useParams();
@@ -161,9 +160,7 @@ const Ledger = () => {
       },
     },
   ];
-  /////////////////////////////////////////// STATES ////////////////////////////////////////////
 
-  /////////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////
   useEffect(() => {
     lead?._id && dispatch(getLeadSales(lead?._id));
     lead?._id && dispatch(getLeadCashbooks(lead?._id));
@@ -172,7 +169,6 @@ const Ledger = () => {
     dispatch(getLead(leadId));
   }, [leadId]);
 
-  /////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////
 
   return (
     <div className="w-full font-primary">

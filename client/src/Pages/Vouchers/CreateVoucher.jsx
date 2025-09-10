@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import pdfMake from "pdfmake/build/pdfmake";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
 import { createVoucher } from "../../redux/action/voucher";
 import { getClients } from "../../redux/action/user";
 import { getProjects } from "../../redux/action/project";
@@ -23,10 +21,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
-  ////////////////////////////////////// VARIBALES ///////////////////////////////////
   const { isFetching } = useSelector(state => state.voucher)
   const { projects } = useSelector(state => state.project)
   const dispatch = useDispatch();
@@ -50,16 +46,13 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
     note: ""
   };
 
-  ////////////////////////////////////// STATES //////////////////////////////////////
   const [voucherData, setVoucherData] = useState(initialVoucherState);
 
-  ////////////////////////////////////// Use Effects ///////////////////////////////////////////
   useEffect(() => {
     dispatch(getClients());
     dispatch(getProjects());
   }, [open]);
 
-  ////////////////////////////////////// FUNCTIONS ////////////////////////////////////////
   const handleChange = (field, value) => {
     setVoucherData((prevData) => ({ ...prevData, [field]: value }));
   };
@@ -82,22 +75,6 @@ const CreateVoucher = ({ open, setOpen, scroll, downloadPdf, loader }) => {
       remained,
       major,
     } = voucherData;
-    // if (
-    //   !visa ||
-    //   !degree ||
-    //   !issuingDate ||
-    //   !dueDate ||
-    //   !clientName ||
-    //   !phone ||
-    //   !type ||
-    //   !country ||
-    //   !total ||
-    //   !paid ||
-    //   !remained ||
-    //   !major ||
-    //   !note
-    // )
-    //   return alert("Make sure to provide all the fields");
 
     dispatch(createVoucher(voucherData, setOpen, projects));
   };

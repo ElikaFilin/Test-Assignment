@@ -12,11 +12,9 @@ import { deleteSociety } from "../../../redux/action/society";
 import { useDispatch, useSelector } from "react-redux";
 
 const DeleteSociety = ({ open, setOpen, societyId }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.society);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false);
   };

@@ -25,7 +25,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateInventory = ({ open, setOpen, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   let today = new Date();
   let time = today.toLocaleTimeString();
   let date = today.toLocaleDateString();
@@ -48,13 +47,10 @@ const CreateInventory = ({ open, setOpen, scroll }) => {
     sellerCity: "",
   };
 
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [inventoryData, setInventoryData] = useState(InventoryinitialState);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
  
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     const project = projects.find(p => p.title == inventoryData.project)

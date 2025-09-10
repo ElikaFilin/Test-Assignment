@@ -8,17 +8,14 @@ import CreateSale from "../../Sales/CreateSale";
 import { searchSaleReducer } from "../../../redux/reducer/sale";
 
 const LedgerSalesTopbar = ({ }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   React.useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -28,7 +25,6 @@ const LedgerSalesTopbar = ({ }) => {
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchSaleReducer(searchTerm));
   }

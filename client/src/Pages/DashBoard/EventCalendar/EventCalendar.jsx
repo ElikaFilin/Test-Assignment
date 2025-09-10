@@ -78,12 +78,8 @@ const EventCalendar = () => {
 
       <Calendar
         localizer={localizer}
-        // startAccessor="start"
-        // endAccessor="end"
         events={events}
         onDoubleClickEvent={(event) => handleShowViewModal(event)}
-        // view="month" // agenda, day, month, week, work_week
-        // defaultView="month" // agenda, day, month, week, work_week
         views={["month", "day", "week"]} // agenda, day, month, week
         style={{ height: 500 }}
       />

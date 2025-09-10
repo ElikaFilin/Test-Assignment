@@ -22,7 +22,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const UpateStatusModal = ({ open, setOpen }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
   const statuses = [
@@ -37,15 +36,12 @@ const UpateStatusModal = ({ open, setOpen }) => {
     { name: "Closed (Won)", value: "closedWon" },
     { name: "Meeting (Attempt)", value: "meetingAttempt" },
   ];
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [status, setStatus] = useState(currentLead?.status);
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     setStatus(currentLead?.status);
   }, [currentLead]);
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateLead(currentLead?._id, { status }));

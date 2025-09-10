@@ -16,20 +16,16 @@ import FollowUps from "./FollowUps/FollowUps";
 import Ledger from "./Ledger/Ledger";
 
 const Lead = () => {
-  //////////////////////////////////// States ////////////////////////////////////////
 
-  //////////////////////////////////// Variables /////////////////////////////////////
   const { leadId } = useParams();
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
   const date = moment(currentLead?.createdAt).format("DD-MM-YYYY");
 
-  //////////////////////////////////// UseEffects /////////////////////////////////////
   useEffect(() => {
     dispatch(getLead(leadId));
   }, [leadId]);
 
-  //////////////////////////////////// Functions /////////////////////////////////////
 
   return (
     <div className="w-full font-primary">

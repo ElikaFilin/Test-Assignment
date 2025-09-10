@@ -1,27 +1,14 @@
 import React, { useState } from "react";
-import { Drawer, Button, TextField, Autocomplete } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Drawer, TextField, Autocomplete } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { filterLead } from "../../redux/action/lead";
-import { FiFilter } from "react-icons/fi";
 import { PiFunnelLight, PiXLight } from "react-icons/pi";
 import { pakistanCities } from "../../constant";
-import { DatePicker, DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { filterEmployeeReducer } from "../../redux/reducer/user";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
-
-  //////////////////////////////// VARIABLES ///////////////////////////////////////////////////
   const dispatch = useDispatch()
   const initialFilterState = { city: '', salaryType: '', martialStatus: '', gender: '' }
-  //////////////////////////////// STATES ///////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState)
-
-  //////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////
-
-  //////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////
   const handleFilter = () => {
     dispatch(filterEmployeeReducer(filters))
     setIsFiltered(true)

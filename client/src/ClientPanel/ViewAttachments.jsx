@@ -5,18 +5,15 @@ import { getLead } from "../redux/action/lead";
 import Swiper from "./Swiper";
 
 const ViewAttachments = ({ open, setOpen, leadId }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
 
-  ////////////////////////////////////// USE EFFECTS ///////////////////////////////////////
   useEffect(() => {
     if (leadId) {
       dispatch(getLead(leadId));
     }
   }, [leadId]);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false);
   };

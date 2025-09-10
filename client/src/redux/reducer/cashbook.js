@@ -54,13 +54,10 @@ const cashbookSlice = createSlice({
                     const cashbookValue = cashbook[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if cashbookValue is in filterValue)
                         return filterValue.includes(cashbookValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if cashbookValue includes filterValue)
                         return String(cashbookValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return cashbookValue === filterValue;
                     }
                 });

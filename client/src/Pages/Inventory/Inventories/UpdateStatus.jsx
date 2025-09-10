@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const UpateStatusModal = ({ open, setOpen }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentInventory, isFetching } = useSelector((state) => state.inventory);
   const statuses = [
@@ -31,15 +30,12 @@ const UpateStatusModal = ({ open, setOpen }) => {
     { name: "On Hold", value: "onHold" },
   ];
 
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [status, setStatus] = useState(currentInventory?.status);
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     setStatus(currentInventory?.status);
   }, [currentInventory]);
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateInventory(currentInventory?._id, { status }));

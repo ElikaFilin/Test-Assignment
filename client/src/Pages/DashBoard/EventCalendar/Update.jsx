@@ -21,20 +21,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Update = ({ setOpen, open, event }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.event);
   let initialEventState = { title: "", description: "", start: "", end: "" };
 
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [eventData, setEventData] = useState(event);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
   useEffect(() => {
     setEventData(event);
   }, [event]);
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     dispatch(updateEvent(event._id, eventData));
     setOpen(false);

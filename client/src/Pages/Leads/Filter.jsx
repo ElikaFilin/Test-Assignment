@@ -13,7 +13,6 @@ import { filterLeadReducer } from "../../redux/reducer/lead";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
 
-  //////////////////////////////// VARIABLES ///////////////////////////////////////////////////
   const dispatch = useDispatch()
   const { leads } = useSelector(state => state.lead)
   const priorities = [
@@ -23,7 +22,6 @@ const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
     { name: "Hot", value: 'hot' },
     { name: "Very Hot", value: 'veryHot' },
   ];
-  // const priorities = ["Very Cold", "Cold", "Moderate", "Hot", "Very Hot"];
 
   const statuses = [
     "New",
@@ -57,12 +55,9 @@ const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
     "Visit Visa"
   ]
   const initialFilterState = { city: '', startingDate: '', endingDate: '', status: '', priority: '', country: '', degree: '', visa: ''}
-  //////////////////////////////// STATES ///////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState)
 
-  //////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////
 
-  //////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////
   const handleFilter = () => {
     dispatch(filterLeadReducer(filters))
     setIsFiltered(true)

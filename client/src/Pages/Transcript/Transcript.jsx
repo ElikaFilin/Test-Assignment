@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { getTranscriptReducer } from "../../redux/reducer/transcript";
 
 const Transcript = () => {
-  //////////////////////////////// VARIABLES /////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { transcripts, isFetching, error } = useSelector((state) => state.transcript);
@@ -118,17 +117,14 @@ const Transcript = () => {
     },
   ];
 
-  //////////////////////////////// USE STATE /////////////////////////////////
   const [selectedRowId, setSelectedRowId] = React.useState(null);
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
 
-  ///////////////////////////////// USE EFFECT ////////////////////////////////
 
   useEffect(() => {
     dispatch(getTranscripts());
   }, []);
 
-  //////////////////////////////// FUNCTIONS /////////////////////////////////
 
   const handleOpenDeleteModal = (transcriptId) => {
     setSelectedRowId(transcriptId);

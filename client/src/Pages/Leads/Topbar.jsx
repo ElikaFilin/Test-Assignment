@@ -12,7 +12,6 @@ import EditModal from "./EditModal";
 import { searchLeadReducer } from "../../redux/reducer/lead";
 
 const Topbar = ({ options, setOptions, isFiltered, setIsFiltered, openFilters, setOpenFilters }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { leads } = useSelector(state => state.lead);
@@ -21,12 +20,10 @@ const Topbar = ({ options, setOptions, isFiltered, setIsFiltered, openFilters, s
   const showOptionButtons = !pathArr.includes("create");
   const dispatch = useDispatch();
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -37,7 +34,6 @@ const Topbar = ({ options, setOptions, isFiltered, setIsFiltered, openFilters, s
   }, [open]);
 
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchLeadReducer(searchTerm));
   }

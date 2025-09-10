@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table } from "../../Components";
 import Topbar from "./Topbar";
 import Task from "./Task";
@@ -7,7 +7,7 @@ import { getTasks } from "../../redux/action/task";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 import { getTaskReducer, getTasksReducer } from "../../redux/reducer/task";
-import { PiArchiveThin, PiDotsThreeOutlineThin, PiTrashLight } from "react-icons/pi";
+import { PiDotsThreeOutlineThin } from "react-icons/pi";
 import { CiEdit } from "react-icons/ci";
 import { format } from "timeago.js";
 import { Dropdown, Menu, MenuButton, MenuItem, menuItemClasses } from "@mui/base";
@@ -88,7 +88,6 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 function Tasks() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const dispatch = useDispatch();
   const { tasks, allTasks, isFetching, error } = useSelector((state) => state.task);
   const archivedTasks = tasks.filter((task) => task.isArchived);
@@ -253,7 +252,6 @@ function Tasks() {
     },
   ];
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -267,7 +265,6 @@ function Tasks() {
     showArchivedTasks: false,
   });
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     dispatch(getTasks());
   }, []);
@@ -277,14 +274,11 @@ function Tasks() {
     }
   }, [isFiltered]);
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////
   const handleOpenStatusModal = (task) => {
     setOpenStatusModal(true);
     dispatch(getTaskReducer(task));
   };
   const handleOpenArchive = () => {
-    //
-    //
   };
   const handleClickOpen = (task) => {
     dispatch(getTaskReducer(task));
@@ -298,7 +292,6 @@ function Tasks() {
     setSelectedTaskId(taskId);
     setOpenDeleteModal(true);
   };
-console.log('that')
   return (
     <div className="w-full h-fit bg-inherit flex flex-col">
       <EditModal open={openEditModal} setOpen={setOpenEditModal} />

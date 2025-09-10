@@ -23,7 +23,6 @@ export const getRefund = async (req, res, next) => {
 export const getRefunds = async (req, res, next) => {
     try {
 
-        // const refunds = await Refund.find({ status: { $in: ['underProcess'] } })
         const refunds = await Refund.find()
 
         res.status(200).json({ result: refunds, message: 'refunds fetched seccessfully', success: true })

@@ -7,7 +7,6 @@ import { CircularProgress } from "@mui/material";
 import { ThreeDots } from "react-loader-spinner";
 
 const Kanban = ({ options, setOptions }) => {
-  /////////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch();
   const { leads, isFetching } = useSelector((state) => state.lead);
   const archivedLeads = leads.filter(lead => lead.isArchived)
@@ -37,11 +36,9 @@ const Kanban = ({ options, setOptions }) => {
     'closedWon',
     'meetingAttempt',
   ]
-  /////////////////////////////////////// STATE ////////////////////////////////////////
   let [filteredLeads, setFilteredLeads] = useState(initialFilteredLeadsState);
   const { closedLost, followedUpCall, contactedCallAttempt, contactedCall, followedUpEmail, contactedEmail, new: newLeads, meetingDone, closedWon, meetingAttempt, } = filteredLeads;
 
-  /////////////////////////////////////// USE EFFECT /////////////////////////////////////
   useEffect(() => {
     statuses.forEach(
       (status) =>
@@ -52,21 +49,17 @@ const Kanban = ({ options, setOptions }) => {
     setFilteredLeads({ ...filteredLeads });
   }, [unarchivedLeads, archivedLeads]);
 
-  /////////////////////////////////////// FUNCTION ///////////////////////////////////////
   const handleDragEnd = (result) => {
     if (!result.destination) return;
 
-    // Determine the source and destination columns
     const sourceColumn = getSourceColumn(result.source.droppableId);
     const destinationColumn = getSourceColumn(result.destination.droppableId);
 
-    // Move the dragged lead from the source to the destination column
     const draggedLead = sourceColumn.leads[result.source.index];
     filteredLeads[sourceColumn.title].splice(result.source.index, 1);
     filteredLeads[destinationColumn.title].splice(result.destination.index, 0, draggedLead);
     setFilteredLeads({ ...filteredLeads });
 
-    // upating lead status in backend/database
     dispatch(updateLead(draggedLead._id, { status: destinationColumn.title }));
   };
 

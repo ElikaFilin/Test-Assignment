@@ -7,15 +7,11 @@ import { PiFunnelLight, PiXLight } from "react-icons/pi";
 import { filterRefundReducer } from "../../../redux/reducer/refund";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
-  //////////////////////////////// VARIABLES ///////////////////////////////////////////////////
   const dispatch = useDispatch()
   const initialFilterState = { branch: '', status: '' }
-  //////////////////////////////// STATES ///////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState)
 
-  //////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////
 
-  //////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////
   const handleFilter = () => {
     dispatch(filterRefundReducer(filters))
     setIsFiltered(true)

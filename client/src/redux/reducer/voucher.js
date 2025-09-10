@@ -43,13 +43,10 @@ const voucherSlice = createSlice({
                     const voucherValue = voucher[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if voucherValue is in filterValue)
                         return filterValue.includes(voucherValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if voucherValue includes filterValue)
                         return String(voucherValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return voucherValue === filterValue;
                     }
                 });

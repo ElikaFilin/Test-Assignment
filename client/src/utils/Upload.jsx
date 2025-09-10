@@ -8,12 +8,10 @@ import { PiCameraLight } from 'react-icons/pi';
 
 const Upload = ({ image, isMultiple }) => {
 
-    ///////////////////////////////////// VARIABLES ////////////////////////////////////////
     const dispatch = useDispatch()
     const imageRef = useRef(null)
     const { isFetching } = useSelector(state => state.upload)
 
-    ///////////////////////////////////// FUNCTIONS ////////////////////////////////////////
     const returnFilename = (url) => {
         const lastSlashIndex = url?.lastIndexOf('/');
         const filename = url?.substring(lastSlashIndex + 1);
@@ -31,7 +29,6 @@ const Upload = ({ image, isMultiple }) => {
         dispatch(deleteImage(returnFilename(url), isMultiple))  // here true is for isMultiple
     }
 
-    ///////////////////////////////////// COMPONENTS ////////////////////////////////////////
     const Image = ({ url }) => (
         <div className="w-full h-full relative flex justify-center items-center ">
             <img src={url} alt="" className="rounded-[8px] w-full h-full bg-cover bg-no-repeat object-center" />

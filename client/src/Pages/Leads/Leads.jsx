@@ -97,7 +97,6 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 function Leads({ type, showSidebar }) {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { leads, allLeads, isFetching, error } = useSelector((state) => state.lead);
@@ -288,7 +287,6 @@ function Leads({ type, showSidebar }) {
     modifiedColumns = modifiedColumns.filter((column) => column.field != "allocatedTo");
   }
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [openAttachmentModal, setOpenAttachmentModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -303,7 +301,6 @@ function Leads({ type, showSidebar }) {
     showEmployeeLeads: false,
     showArchivedLeads: false,
   });
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     loggedUser.role == 'employee'
       ?
@@ -319,7 +316,6 @@ function Leads({ type, showSidebar }) {
   }, [isFiltered]);
 
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////
   const handleOpenAttachmentModal = (leadId) => {
     setSelectedLeadId(leadId);
     setOpenAttachmentModal(true);

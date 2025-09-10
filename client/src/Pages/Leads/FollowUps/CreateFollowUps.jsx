@@ -24,7 +24,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateFollowUps = ({ setOpen, open, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let today = new Date();
@@ -39,12 +38,9 @@ const CreateFollowUps = ({ setOpen, open, scroll }) => {
     leadId
   }
 
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [followUpData, setFollowUpData] = useState(initialFollowUpState);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
 
   const handleInputChange = (e) => {
     setFollowUpData({

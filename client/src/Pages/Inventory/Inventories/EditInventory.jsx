@@ -15,20 +15,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditInventory = ({ open, setOpen, openEdit, setOpenEdit, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const dispatch = useDispatch();
   const { currentInventory: inventory, isFetching } = useSelector((state) => state.inventory);
   const { isFetching: projectsFetching, projects } = useSelector((state) => state.project);
 
-  //////////////////////////////////////// STATES ////////////////////////////////////////////
   const [inventoryData, setInventoryData] = useState(inventory);
 
-  //////////////////////////////////////// USE EFFEECT ////////////////////////////////////////////
   useEffect(() => {
     setInventoryData(inventory);
   }, [inventory]);
 
-  //////////////////////////////////////// FUNCTION ////////////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateInventory(inventory._id, { ...inventoryData }));

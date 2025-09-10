@@ -11,7 +11,6 @@ import { FiFilter, FiList, FiUser } from "react-icons/fi";
 import { searchLeadReducer } from "../../../redux/reducer/lead";
 import Filter from "./Filter";
 const Topbar = () => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { leads } = useSelector((state) => state.lead);
@@ -20,13 +19,11 @@ const Topbar = () => {
   const showOptionButtons = !pathArr.includes("create");
   const dispatch = useDispatch();
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const descriptionElementRef = React.useRef(null);
   const [openFilter, setOpenFilter] = useState(false);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -36,7 +33,6 @@ const Topbar = () => {
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchLeadReducer(searchTerm));
   };

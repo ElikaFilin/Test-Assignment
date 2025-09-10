@@ -4,7 +4,6 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 const Kanban = ({ leads, setLeads }) => {
 
-  /////////////////////////////////////// STATE ////////////////////////////////////////
   const [newLeads, setNewLeads] = useState([...leads.filter(lead => lead.type == 'new')])
   const [qualified, setQualified] = useState([...leads.filter(lead => lead.type == 'qualified')])
   const [disqualified, setDisqualified] = useState([...leads.filter(lead => lead.type == 'disqualified')])
@@ -12,26 +11,20 @@ const Kanban = ({ leads, setLeads }) => {
   const [proposalSent, setProposalSent] = useState([...leads.filter(lead => lead.type == 'proposalSent')])
   const [converted, setConverted] = useState([...leads.filter(lead => lead.type == 'converted')])
 
-  /////////////////////////////////////// USE EFFECT /////////////////////////////////////
 
 
-  /////////////////////////////////////// FUNCTION ///////////////////////////////////////
   const handleDragEnd = (result) => {
     if (!result.destination) return;
 
-    // Determine the source and destination columns
     const sourceColumn = getSourceColumn(result.source.droppableId);
     const destinationColumn = getSourceColumn(result.destination.droppableId);
 
-    // Move the dragged lead from the source to the destination column
     const draggedLead = sourceColumn.leads[result.source.index];
     sourceColumn.leads.splice(result.source.index, 1);
     destinationColumn.leads.splice(result.destination.index, 0, draggedLead);
 
-    // Change the type of dragged lead
     draggedLead.type = destinationColumn.title
 
-    // dispatch a function to change the type in the database
 
     setLeads([...leads])
   };

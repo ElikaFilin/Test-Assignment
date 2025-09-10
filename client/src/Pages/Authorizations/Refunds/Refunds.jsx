@@ -15,7 +15,6 @@ import { getRefunds } from "../../../redux/action/refund";
 import { getRefundsReducer } from "../../../redux/reducer/refund";
 
 function RefundApprovals() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const dispatch = useDispatch();
   const { refunds, allRefunds, isFetching, error } = useSelector(state => state.refund);
   const { error: cashbookError, isFetching: cashbookIsFetching } = useSelector(state => state.cashbook);
@@ -109,13 +108,11 @@ function RefundApprovals() {
     },
   ];
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [selectedRefund, setSelectedRefund] = useState('')
   const [openEnterPassword, setOpenEnterPassword] = useState(false)
   const [refundType, setRefundType] = useState('') // approve/reject
   const [isFiltered, setIsFiltered] = useState(false)
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     dispatch(getRefunds());
   }, []);
@@ -125,7 +122,6 @@ function RefundApprovals() {
     }
   }, [isFiltered])
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////
 
 
 

@@ -12,19 +12,15 @@ import { filterProjectReducer } from "../../../redux/reducer/project";
 
 const ProjectFilter = ({ open, setOpen, isFiltered, setIsFiltered }) => {
 
-  //////////////////////////////// VARIABLES ///////////////////////////////////////////////////
   const dispatch = useDispatch()
   const { societies } = useSelector(state => state.society)
   const initialFilterState = { city: '', startingDate: '', endingDate: '', status: '', }
 
-  //////////////////////////////// STATES ///////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState)
 
-  //////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////
   useEffect(() => {
     dispatch(getSocieties())
   }, [])
-  //////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////
   const handleFilter = () => {
     dispatch(filterProjectReducer(filters))
     setIsFiltered(true)

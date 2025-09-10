@@ -10,18 +10,15 @@ import SetDeductions from "./SetDeductions";
 import ShowDeductions from "./ShowDeductions";
 
 const Topbar = () => {
-  ///////////////////////////////////////// VARIABLES ////////////////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
   const descriptionElementRef = React.useRef(null);
 
-  /////////////////////////////////////////STATES ////////////////////////////////////////////////
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [openDeductionModal, setOpenDeductionModal] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  ///////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////////
   useEffect(() => {
     if (openCreateModal) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -31,7 +28,6 @@ const Topbar = () => {
     }
   }, [openCreateModal]);
 
-  ///////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////
 
   const handleCreateopen = (scrollType) => () => {
     setOpenCreateModal(true);

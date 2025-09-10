@@ -38,22 +38,18 @@ import Home from "./ClientPanel/Home";
 import TranscriptPage from "./Pages/Transcript/TranscriptPage";
 
 const App = () => {
-  ///////////////////////////////////// VARIABLES ////////////////////////////////////////
   const { loggedUser } = useSelector((state) => state.user);
   const { pathname } = useLocation();
   const pathArr = pathname.split("/").filter((item) => item != "");
   const showSidebarForSettings = !pathArr.includes("/settings");
 
-  ///////////////////////////////////// STATES ////////////////////////////////////////
   const [showSidebar, setShowSidebar] = useState(true);
 
-  ///////////////////////////////////// USE EFFECTS ////////////////////////////////////////
   useEffect(() => {
     if (window.innerWidth < 768) setShowSidebar(false);
     else setShowSidebar(true);
   }, [window.innerWidth]);
 
-  ///////////////////////////////////// Functions ////////////////////////////////////////
 
   return (
     <div>

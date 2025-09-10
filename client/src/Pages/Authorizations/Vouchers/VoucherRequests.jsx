@@ -9,7 +9,6 @@ import EnterPassword from './EnterPassword'
 
 function VoucherApprovals() {
 
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const dispatch = useDispatch()
   const { voucherApprovals, isFetching, error } = useSelector(state => state.approval)
   const columns = [
@@ -112,7 +111,6 @@ function VoucherApprovals() {
   ];
 
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [view, setView] = useState('table')
   const [openRequest, setOpenRequest] = useState(false)
   const [isFiltered, setIsFiltered] = useState(false)
@@ -122,12 +120,10 @@ function VoucherApprovals() {
   const [refundType, setRefundType] = useState('') // approve/reject
 
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     dispatch(getApprovals('voucher'))
   }, [])
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////
 
 
 

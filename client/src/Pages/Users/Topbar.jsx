@@ -1,17 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Add, Close } from "@mui/icons-material";
 import { Path } from "../../utils";
 import { Chip, FormControl, Input, InputAdornment, Tooltip } from "@mui/material";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { FiFilter } from "react-icons/fi";
 import CreateUser from "./CreateEmployee";
+import CreateClient from "./CreateClient";
 import Filter from "./Filter";
 import { searchUserReducer } from "../../redux/reducer/user";
+import { useDispatch } from "react-redux";
 
-const Topbar = ({ view, setView, setIsFiltered, isFiltered }) => {
-
-  ///////////////////////////////////////// VARIABLES ///////////////////////////////////////////////////
+const Topbar = ({ setIsFiltered, isFiltered }) => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const pathArr = pathname.split("/").filter((item) => item != "");
   const showClientTopBar = !pathArr.includes("employees");
@@ -21,13 +22,10 @@ const Topbar = ({ view, setView, setIsFiltered, isFiltered }) => {
     ? `Create ${pathname.split("/")[1].slice(0, -1)}`
     : pathname.split("/")[1];
   const descriptionElementRef = useRef(null);
-
-  ///////////////////////////////////////// STATES ///////////////////////////////////////////////////
   const [open, setOpen] = useState(false);
+  const [openClient, setOpenClient] = useState(false);
   const [openFilters, setOpenFilters] = useState(false);
   const [scroll, setScroll] = useState("paper");
-
-  ///////////////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -36,17 +34,17 @@ const Topbar = ({ view, setView, setIsFiltered, isFiltered }) => {
       }
     }
   }, [open]);
-
-  ///////////////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////
-  const handleSearch = (searchTerm) => {
-    dispatch(searchUserReducer(searchTerm));
-  }
   const handleToggleFilters = () => {
     setOpenFilters((pre) => !pre);
   };
 
   const handleCreateopen = (scrollType) => () => {
     setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleCreateClientOpen = (scrollType) => () => {
+    setOpenClient(true);
     setScroll(scrollType);
   };
 
@@ -95,7 +93,7 @@ const Topbar = ({ view, setView, setIsFiltered, isFiltered }) => {
             <div>
               <Tooltip title="Add New Employee" placement="top" arrow>
                 <div onClick={handleCreateopen("body")}>
-                  <button className="bg-primary-red hover:bg-red-400 transition-all text-white w-[44px] h-[44px] flex justify-center items-center rounded-full shadow-xl">
+                  <button className="bg-blue-600 hover:bg-blue-700 transition-all text-white w-[44px] h-[44px] flex justify-center items-center rounded-full shadow-xl">
                     <Add />
                   </button>
                 </div>
@@ -120,10 +118,30 @@ const Topbar = ({ view, setView, setIsFiltered, isFiltered }) => {
                 />
               </FormControl>
             </div>
+            <Tooltip title="Filter" arrow placement="top">
+              <div
+                onClick={handleToggleFilters}
+                className={` p-2 rounded-md cursor-pointer ${openFilters
+                  ? "text-[#20aee3] bg-[#e4f1ff]"
+                  : "bg-[#ebf2f5] hover:bg-[#dfe6e8] text-[#a6b5bd]"
+                  }`}>
+                <FiFilter className="text-[25px] " />
+              </div>
+            </Tooltip>
+            <div>
+              <Tooltip title="Add New Client" placement="top" arrow>
+                <div onClick={handleCreateClientOpen("body")}>
+                  <button className="bg-blue-600 hover:bg-blue-700 transition-all text-white w-[44px] h-[44px] flex justify-center items-center rounded-full shadow-xl">
+                    <Add />
+                  </button>
+                </div>
+              </Tooltip>
+            </div>
           </div>
         )}
       </div>
       <CreateUser open={open} scroll={scroll} setOpen={setOpen} />
+      <CreateClient open={openClient} scroll={scroll} setOpen={setOpenClient} />
       <Filter open={openFilters} setOpen={setOpenFilters} setIsFiltered={setIsFiltered} />
     </div>
   );

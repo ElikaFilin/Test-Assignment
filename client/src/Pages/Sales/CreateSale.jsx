@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateSale = ({ open, setOpen, scroll }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching } = useSelector((state) => state.sale);
@@ -35,10 +34,8 @@ const CreateSale = ({ open, setOpen, scroll }) => {
     profit: "",
     top: "",
   };
-  ////////////////////////////////////////// STATES /////////////////////////////////////
   const [saleData, setSaleData] = useState(initialState);
 
-  ////////////////////////////////////////// USE EFFECTS /////////////////////////////////
   useEffect(() => {
     if (employees.length === 0) {
       dispatch(getEmployees());
@@ -49,7 +46,6 @@ const CreateSale = ({ open, setOpen, scroll }) => {
     setSaleData({ ...saleData, staff: lead?.client?.username });
   }, [lead]);
 
-  ////////////////////////////////////////// FUNCTIONS ///////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createSale({ ...saleData, leadId: lead?._id || "" }, setOpen));

@@ -27,13 +27,11 @@ import inventoryRoutes from './routes/inventory.js'
 dotenv.config()
 const app = express()
 const CONNECTION_URL = process.env.ATLAS_URL
-// const CONNECTION_URL = process.env.COMPASS_URL
 
 const PORT = process.env.PORT || 4000
 app.use(cors())
 app.use(express.json())
 
-// serving static files | images
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use('/uploads', express.static(join(__dirname, 'uploads')));

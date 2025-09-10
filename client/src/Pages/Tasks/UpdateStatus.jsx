@@ -14,19 +14,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const UpateStatusModal = ({ open, setOpen }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentTask, isFetching } = useSelector((state) => state.task);
 
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [status, setStatus] = useState(currentTask?.status);
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     setStatus(currentTask?.status);
   }, [currentTask]);
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateTask(currentTask?._id, { status }, setOpen));

@@ -8,19 +8,16 @@ import { format, parseISO } from "date-fns";
 import { getDeductions } from "../../redux/action/deduction";
 
 const TranscriptPage = ({ }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////
   const dispatch = useDispatch();
 
   const { currentTranscript } = useSelector((state) => state.transcript);
   const { deductions } = useSelector((state) => state.deduction);
 
-  // Converting date to readable form
   const date = format(parseISO(currentTranscript?.createdAt), "dd MMMM yyyy");
 
   const navigate = useNavigate();
   const pdfRef = useRef();
 
-  ////////////////////////////////////// USE EFFECTS ///////////////////////////////////
 
 
   useEffect(() => {
@@ -49,7 +46,6 @@ const TranscriptPage = ({ }) => {
     dispatch(getDeductions())
   }, []);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////
 
   return (
     <div ref={pdfRef} className="completePdfPage w-full my-4 font-primary">

@@ -15,7 +15,6 @@ import DeleteModal from "./DeleteModal";
 import { PiDownloadSimpleLight, PiTrashLight } from "react-icons/pi";
 
 function Vouchers() {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { vouchers, isFetching, error } = useSelector((state) => state.voucher);
@@ -110,17 +109,14 @@ function Vouchers() {
     },
   ];
 
-  //////////////////////////////////////// STATES ///////////////////////////////////////
   const [openViewModal, setOpenViewModal] = useState(false);
   const [selectedVoucherId, setSelectedVoucherId] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  //////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     loggedUser.role == 'employee' ? dispatch(getEmployeeVouchers()) : dispatch(getVouchers())
   }, []);
 
-  //////////////////////////////////////// FUNCTIONS ////////////////////////////////////
   const handleDownload = (voucher) => {
     navigate("/download/voucher", { 
       state: { voucher },

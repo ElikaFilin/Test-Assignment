@@ -4,14 +4,9 @@ import { useLocation } from "react-router-dom";
 import { Close } from "@mui/icons-material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { CiEdit } from "react-icons/ci";
 import {
   PiBankLight,
   PiCalendarCheckLight,
-  PiDatabaseLight,
-  PiFolderSimpleUserLight,
-  PiFoldersLight,
-  PiHardDrivesLight,
   PiHouseLight,
   PiListChecksLight,
   PiLockKeyLight,
@@ -21,13 +16,10 @@ import {
   PiShoppingCartSimpleLight,
   PiUserCircleLight,
   PiUserListLight,
-  PiUsersFourLight,
   PiUsersThreeLight,
-  PiWarehouseLight,
 } from "react-icons/pi";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
-  //////////////////////////////////////// Variables ////////////////////////////////////////
   const { loggedUser } = useSelector((state) => state.user);
   const { pathname } = useLocation();
   const role = loggedUser?.role;
@@ -40,14 +32,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       role: ["employee", "manager", "super_admin"],
       childrens: [],
     },
-    // {
-    //   id: 2,
-    //   title: "Leads",
-    //   icon: <PiUsersThreeLight className="text-[25px]" />,
-    //   link: "/leads",
-    //   role: ["employee", "manager", "super_admin"],
-    //   childrens: [],
-    // },
     {
       id: 3,
       title: "To Do Tasks",

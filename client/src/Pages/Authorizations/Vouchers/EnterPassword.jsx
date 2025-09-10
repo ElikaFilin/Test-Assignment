@@ -13,18 +13,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EnterPassword = ({ open, setOpen, type, approval, approvalId }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
   const { loggedUser } = useSelector(state => state.user)
 
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [password, setPassword] = useState('');
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
 
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleApprove = () => {
     dispatch(acceptVoucherApproval(approval?._id, password, setOpen));
     setOpen(false)

@@ -8,7 +8,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const VoucherPage = ({ }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////
   const { state } = useLocation()
   const voucher = state?.voucher
   const navigate = useNavigate()
@@ -78,7 +77,6 @@ const VoucherPage = ({ }) => {
             </tr>
             <tr className='w-full' >
               <td className="px-[1px] border-b-[1px] border-x-[1px] border-black h-[2rem] pb-4 text-red-700"  colSpan={3}>
-                * {voucher?.note}
               </td>
             </tr>
           </table>

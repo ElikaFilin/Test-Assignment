@@ -28,7 +28,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditModal = ({ open, setOpen }) => {
-  ///////////////////////////////////// VARIABLES /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentTask: task, isFetching, error } = useSelector((state) => state.task);
   const initialTaskState = {
@@ -66,15 +65,12 @@ const EditModal = ({ open, setOpen }) => {
     { name: "Meeting (Done)", value: "meetingDone" },
     { name: "Meeting (Attempt)", value: "meetingAttempt" },
   ];
-  ///////////////////////////////////// STATES ////////////////////////////////////////
   const [taskData, setTaskData] = useState(task);
 
-  ///////////////////////////////////// USE EFFECTS ///////////////////////////////////
   useEffect(() => {
     setTaskData(task);
   }, [task]);
 
-  ///////////////////////////////////// FUNCTIONS /////////////////////////////////////
   const handleSubmit = (e) => {
     const {
       completedTask,

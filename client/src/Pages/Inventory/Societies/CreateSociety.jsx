@@ -27,7 +27,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateSociety = ({ open, setOpen, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   let today = new Date();
   let time = today.toLocaleTimeString();
   let date = today.toLocaleDateString();
@@ -43,15 +42,12 @@ const CreateSociety = ({ open, setOpen, scroll }) => {
     status: "inactive",
     images: [],
   };
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [societyData, setSocietyData] = useState(societyInitialState);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
   useEffect(() => {
     setSocietyData({ ...societyData, images: urls });
   }, [urls]);
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     const { title, description, status, images } = societyData
     if (!title || !description || !images) return alert("Make sure to provide all the fields")

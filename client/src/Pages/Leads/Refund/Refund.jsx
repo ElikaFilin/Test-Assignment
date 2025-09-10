@@ -14,7 +14,6 @@ import DeleteModal from "./DeleteModal";
 
 const Refund = () => {
 
-  /////////////////////////////////////////// VARIABLES //////////////////////////////////////////// 
   const { refunds, error, isFetching } = useSelector(state => state.refund)
   const { leadId } = useParams()
   const dispatch = useDispatch()
@@ -98,18 +97,15 @@ const Refund = () => {
     },
   ];
 
-  /////////////////////////////////////////// STATES //////////////////////////////////////////// 
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedRefundId, setSelectedRefundId] = useState(null);
 
 
-  /////////////////////////////////////////// USE EFFECTS //////////////////////////////////////////// 
   useEffect(() => {
     dispatch(getLeadRefunds(leadId))
     dispatch(getLead(leadId))
   }, [leadId])
 
-  /////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////// 
   const handleOpenDeleteModal = (refundId) => {
     setOpenDeleteModal(true);
     setSelectedRefundId(refundId);

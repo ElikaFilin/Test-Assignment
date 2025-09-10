@@ -5,11 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const DeleteModal = ({ open, setOpen, taskId }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const { isFetching } = useSelector(state => state.task)
   const dispatch = useDispatch()
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false)
   }

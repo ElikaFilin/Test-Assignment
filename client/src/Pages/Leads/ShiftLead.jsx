@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const ShiftLead = ({ open, setOpen, from }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
   const { employees, loggedUser } = useSelector((state) => state.user);
@@ -30,17 +29,14 @@ const ShiftLead = ({ open, setOpen, from }) => {
   .filter((employee) => employee._id != loggedUser._id) // Filter out employees with matching _id
   .map(({ _id, username }) => ({ _id, username }));
   
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [shiftTo, setShiftTo] = useState('');
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     if (employees.length === 0) {
       dispatch(getEmployees());
     }
   }, []);
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(shiftLead(currentLead?._id, shiftTo));
@@ -107,33 +103,11 @@ const ShiftLead = ({ open, setOpen, from }) => {
         </DialogActions>
       </Dialog>
     </div>
-    // <Modal open={open} onClose={() => setOpen(false)} className='w-screen h-screen flex justify-center items-center ' >
 
-    //     <div className='w-[14rem] h-fit overflow-y-scroll overflow-x-hidden bg-white rounded-[4px] ' >
 
-    //         <div className="bg-neutral-800 p-[8px] text-white flex justify-between items-center sticky top-0 ">
-    //             <h2 className='font-bold text-[20px] ' >Shift Lead</h2>
-    //             <IconButton onClick={() => setOpen(false)} ><Close className='text-white' /></IconButton>
-    //         </div>
 
-    //         <form onSubmit={handleSubmit} className='w-full p-[10px] flex flex-col gap-[10px] ' >
-    //             <select className='w-full min-h-[40px] text-gray-500 border-[1px] border-gray-400 py-[4px] px-[8px] rounded-[4px] ' name='allocatedTo' value={allocatedTo} onChange={handleChange} >
-    //                 {
-    //                     employeeNames.map((employee, index) => (
-    //                         <option value={employee?._id} key={index} >{employee?.username}</option>
-    //                     ))
-    //                 }
-    //             </select>
-    //             <div className="w-full flex justify-end items-center">
-    //                 <button type='submit' className='w-fit text-gray-900 bg-gray-200 border-[1px] border-gray-800 px-[20px] py-[4px] rounded-[4px] cursor-pointer ' >
-    //                     {isFetching ? 'Shifting...' : 'Shift'}
-    //                 </button>
-    //             </div>
-    //         </form>
 
-    //     </div>
 
-    // </Modal>
   );
 };
 

@@ -11,11 +11,9 @@ import { deleteProject } from "../../../redux/action/project";
 import { useDispatch, useSelector } from "react-redux";
 
 const DeleteProject = ({ open, setOpen, projectId }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.project);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false);
   };

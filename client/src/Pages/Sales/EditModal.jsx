@@ -22,7 +22,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditModal = ({ open, setOpen }) => {
-  //////////////////////////////////////// VARIABLES ///////////////////////////////////
   const { currentLead: lead } = useSelector((state) => state.lead);
   const initialState = {
     staff: "",
@@ -36,10 +35,8 @@ const EditModal = ({ open, setOpen }) => {
   const { currentSale: sale, isFetching } = useSelector((state) => state.sale);
   const { clients, employees } = useSelector((state) => state.user);
 
-  //////////////////////////////////////// STATES ///////////////////////////////////
   const [saleData, setSaleData] = useState(sale);
 
-  //////////////////////////////////////// STATES ///////////////////////////////////
   useEffect(() => {
     setSaleData(sale);
   }, [sale]);
@@ -53,7 +50,6 @@ const EditModal = ({ open, setOpen }) => {
     }
     }, []);
 
-  //////////////////////////////////////// FUNCTIONS ///////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateSale(sale._id, saleData));

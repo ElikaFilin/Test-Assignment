@@ -11,7 +11,6 @@ import { searchSociety } from "../../../redux/action/society";
 import CreateSociety from "./CreateSociety";
 
 const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, setIsFiltered }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
@@ -19,7 +18,6 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
   const showOptionButtons = !pathArr.includes("create");
   const { societies } = useSelector((state) => state.society);
   const dispatch = useDispatch();
-  // Count occurrences of each status
   const statusCounts = societies.reduce((acc, society) => {
     acc[society.status] = (acc[society.status] || 0) + 1;
     return acc;
@@ -27,11 +25,9 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
   const allStatusOptions = ["notStarted", "onHold", "completed", "inProgress"];
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -41,7 +37,6 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchSociety(searchTerm, options.showArchivedSocieties));
   };

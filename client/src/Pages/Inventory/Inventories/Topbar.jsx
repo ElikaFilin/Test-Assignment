@@ -12,7 +12,6 @@ import CreateInventory from "./CreateInventory";
 import { searchInventoryReducer } from "../../../redux/reducer/inventory";
 
 const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, setIsFiltered }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
@@ -20,24 +19,20 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
   const showOptionButtons = !pathArr.includes("create");
   const { inventories } = useSelector((state) => state.inventory);
   const dispatch = useDispatch();
-  // Count occurrences of each status
   const statusCounts = inventories.reduce((acc, inventory) => {
     acc[inventory.status] = (acc[inventory.status] || 0) + 1;
     return acc;
   }, {});
   const allStatusOptions = ["notStarted", "onHold", "completed", "inProgress"];
-  // Transform the status counts into the desired format
   const statusArray = allStatusOptions.map((status) => ({
     name: status,
     counts: statusCounts[status] || 0,
   }));
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -47,7 +42,6 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchInventoryReducer(searchTerm));
   }

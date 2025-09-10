@@ -14,7 +14,6 @@ import { format } from "timeago.js";
 import { PiTrashThin } from "react-icons/pi";
 
 const ViewCashBook = () => {
-  ////////////////////////////////////// VARIABLES /////////////////////////////////////
   const dispatch = useDispatch();
   const { cashbooksIn, cashbooksOut, isFetching, error } = useSelector((state) => state.cashbook);
   const { loggedUser } = useSelector((state) => state.user);
@@ -95,17 +94,14 @@ const ViewCashBook = () => {
     },
   ];
 
-  ////////////////////////////////////// STATES ///////////////////////////////////////
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [cashbookId, setCashbookId] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     dispatch(getSpecificDateCashbook(selectedDate));
   }, []);
 
-  ////////////////////////////////////// FUCNTIONS ///////////////////////////////////////
   const handleOpenDeleteModal = (cId) => {
     setOpenDeleteModal(true);
     setCashbookId(cId);

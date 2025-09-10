@@ -12,7 +12,6 @@ const Kanban = ({ options, setOptions }) => {
   const archivedTasks = tasks.filter((task) => task.isArchived);
   const unarchivedTasks = tasks.filter((task) => !task.isArchived);
 
-  // Initialize state using the function form to avoid unexpected behavior
   const [filteredTasks, setFilteredTasks] = useState(() => ({
     successful: [],
     unsuccessful: [],
@@ -21,7 +20,6 @@ const Kanban = ({ options, setOptions }) => {
   const { successful, unsuccessful } = filteredTasks;
 
   useEffect(() => {
-    // Create a new object to store the updated filteredTasks
     const updatedFilteredTasks = {
       successful: options.showArchivedTasks
         ? archivedTasks.filter((task) => task.completedTaskStatus === 'successful')
@@ -31,7 +29,6 @@ const Kanban = ({ options, setOptions }) => {
         : unarchivedTasks.filter((task) => task.completedTaskStatus === 'unsuccessful'),
     };
   
-    // Update the state with the new object
     setFilteredTasks(updatedFilteredTasks);
   }, [options.showArchivedTasks]);
   
@@ -46,18 +43,15 @@ const Kanban = ({ options, setOptions }) => {
     const updatedSourceColumn = [...sourceColumn];
     const updatedDestinationColumn = [...destinationColumn];
     
-    // Move the task from source to destination
     updatedSourceColumn.splice(result.source.index, 1);
     updatedDestinationColumn.splice(result.destination.index, 0, draggedTask);
 
-    // Update the state with the new column data
     setFilteredTasks((prev) => ({
       ...prev,
       [sourceColumn.title]: updatedSourceColumn,
       [destinationColumn.title]: updatedDestinationColumn,
     }));
 
-    // Update the task's completedTaskStatus in the backend/database
     dispatch(updateTask(draggedTask._id, { completedTaskStatus: destinationColumn.title }));
   };
 

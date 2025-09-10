@@ -32,7 +32,6 @@ export const searchProject = async (req, res, next) => {
     const { isArchived } = req.body;
 
     try {
-        // Create an object to filter project documents
         const projectFilter = {
             $or: [
                 { title: new RegExp(searchTerm, 'i') },
@@ -41,7 +40,6 @@ export const searchProject = async (req, res, next) => {
             ],
         };
 
-        // Check if isArchived is provided in the request body
         if (isArchived) {
             projectFilter.isArchived = isArchived; // Filter by isArchived field
         }
@@ -63,23 +61,19 @@ export const filterProject = async (req, res, next) => {
     try {
         let query = Project.find(filters);
 
-        // Check if startingDate is provided and valid
         if (startingDate && isValidDate(startingDate)) {
             const startDate = new Date(startingDate);
             startDate.setHours(0, 0, 0, 0);
 
-            // Add createdAt filtering for startingDate
             query = query.where('createdAt').gte(startDate);
         }
 
-        // Check if endingDate is provided and valid
         if (endingDate && isValidDate(endingDate)) {
             const endDate = new Date(endingDate);
             endDate.setHours(23, 59, 59, 999);
             query = query.where('createdAt').lte(endDate);
         }
 
-        // Check if society is provided and filter by the title of the referenced document
         if (society) {
             query = query.where('society').in(await Society.find({ title: new RegExp(society, 'i') }).select('_id').exec());
         }

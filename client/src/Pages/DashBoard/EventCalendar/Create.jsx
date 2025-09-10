@@ -12,17 +12,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Create = ({ setOpen, open }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.event);
   let initialEventState = { title: "", description: "", start: "", end: "" };
 
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [eventData, setEventData] = useState(initialEventState);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     const { title, description, start, end } = eventData;
     if (!title || !description || !start || !end)

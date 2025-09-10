@@ -2,7 +2,6 @@ import toast from 'react-hot-toast'
 import * as api from '../api'
 import { start, end, error, createDeductionReducer, deleteDeductionReducer, getDeductionsReducer, updateDeductionReducer, getDeductionReducer } from '../reducer/deduction'
 
-// Action Creators
 
 export const getDeduction = (deductionId) => async (dispatch) => {
     try {

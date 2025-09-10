@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createEmployee } from "../../redux/action/user";
+import { createClient } from "../../redux/action/user";
 import {
   Divider,
   Dialog,
@@ -16,10 +16,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const CreateUser = ({ open, setOpen, scroll }) => {
+const CreateClient = ({ open, setOpen, scroll }) => {
   const { isFetching } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const initialEmployeeState = {
+  const initialClientState = {
     firstName: "",
     lastName: "",
     username: "",
@@ -27,7 +27,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
     phone: "",
     email: "",
   }
-  const [employeeData, setEmployeeData] = useState(initialEmployeeState);
+  const [clientData, setClientData] = useState(initialClientState);
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -37,7 +37,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { firstName, lastName, username, password, phone, email } = employeeData
+    const { firstName, lastName, username, password, phone, email } = clientData
     const newErrors = {};
     if (!firstName) newErrors.firstName = "First name is required";
     if (!lastName) newErrors.lastName = "Last name is required";
@@ -56,21 +56,21 @@ const CreateUser = ({ open, setOpen, scroll }) => {
       phone: "",
     });
     
-    dispatch(createEmployee(employeeData, () => {
-      setEmployeeData(initialEmployeeState);
+    dispatch(createClient(clientData, () => {
+      setClientData(initialClientState);
       setOpen(false);
     }));
   };
 
   const handleChange = (field, value) => {
-    setEmployeeData((prevFilters) => ({ ...prevFilters, [field]: value, }));
+    setClientData((prevFilters) => ({ ...prevFilters, [field]: value, }));
     if (errors[field]) {
       setErrors((prevErrors) => ({ ...prevErrors, [field]: "" }));
     }
   };
 
   const handleBlur = (field) => {
-    const value = employeeData[field];
+    const value = clientData[field];
     let errorMessage = "";
     
     switch (field) {
@@ -96,7 +96,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
 
   const handleClose = () => {
     setOpen(false);
-    setEmployeeData(initialEmployeeState);
+    setClientData(initialClientState);
     setErrors({
       firstName: "",
       lastName: "",
@@ -118,7 +118,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
         maxWidth="sm"
         aria-describedby="alert-dialog-slide-description">
         <DialogTitle className="flex items-center justify-between">
-          <div className="text-sky-400 font-primary">Add New Employee</div>
+          <div className="text-sky-400 font-primary">Add New Client</div>
           <div className="cursor-pointer" onClick={handleClose}>
             <PiXLight className="text-[25px]" />
           </div>
@@ -127,7 +127,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
           <div className="flex flex-col gap-2 p-3 text-gray-500 font-primary">
             <div className="text-xl flex justify-start items-center gap-2 font-normal">
               <PiNotepad size={23} />
-              <span>Employee Detials</span>
+              <span>Client Details</span>
             </div>
             <Divider />
             <div className="mt-6 space-y-6">
@@ -139,7 +139,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                   <TextField
                     size="small"
                     fullWidth
-                    value={employeeData.firstName}
+                    value={clientData.firstName}
                     onChange={(e) => handleChange('firstName', e.target.value)}
                     onBlur={() => handleBlur('firstName')}
                     error={!!errors.firstName}
@@ -154,7 +154,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                   <TextField
                     size="small"
                     fullWidth
-                    value={employeeData.lastName}
+                    value={clientData.lastName}
                     onChange={(e) => handleChange('lastName', e.target.value)}
                     onBlur={() => handleBlur('lastName')}
                     error={!!errors.lastName}
@@ -166,12 +166,12 @@ const CreateUser = ({ open, setOpen, scroll }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    User Name <span className="text-red-500">*</span>
+                    Username <span className="text-red-500">*</span>
                   </label>
                   <TextField
                     size="small"
                     fullWidth
-                    value={employeeData.username}
+                    value={clientData.username}
                     onChange={(e) => handleChange('username', e.target.value)}
                     onBlur={() => handleBlur('username')}
                     error={!!errors.username}
@@ -187,7 +187,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                     size="small"
                     fullWidth
                     placeholder="Optional"
-                    value={employeeData.email}
+                    value={clientData.email}
                     onChange={(e) => handleChange('email', e.target.value)}
                     variant="outlined"
                   />
@@ -200,7 +200,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                   </label>
                   <TextField
                     type="password"
-                    value={employeeData.password}
+                    value={clientData.password}
                     onChange={(e) => handleChange("password", e.target.value)}
                     onBlur={() => handleBlur('password')}
                     size="small"
@@ -217,7 +217,7 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                   <TextField
                     type="number"
                     size="small"
-                    value={employeeData.phone}
+                    value={clientData.phone}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     onBlur={() => handleBlur('phone')}
                     fullWidth
@@ -242,13 +242,12 @@ const CreateUser = ({ open, setOpen, scroll }) => {
             type="submit"
             disabled={isFetching}
             className="px-6 py-2.5 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 tracking-wide">
-            {isFetching ? 'Submitting...' : 'Add Employee'}
+            {isFetching ? 'Submitting...' : 'Add Client'}
           </button>
         </DialogActions>
       </Dialog>
     </div>
-
   );
 };
 
-export default CreateUser;
+export default CreateClient;

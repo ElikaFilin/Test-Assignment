@@ -4,6 +4,19 @@
 2. When create new Employee, display form validation message(under each field) instead of alert if some fields are empty
 3. Add client button and modal.
 4. Add client edit feature.
+5. Fix modal buttons: text letter-spacing and follow best practice for cancel, submit buttons
+6. Add * symbol near each label, where field id required
+7. Consider improving UI/UX in Modal and hole project
+8. Fix Emploee's edit
+9. Enhance UI/UX to not edit email in modal, because of system restrictions
+10. Change the order for action icons: first is edit, second is delete for employees
+11. Review the code in entire repo. What can i improve?
+12. I see two popup where errors are showen. Leave the appropriate one
+13. Not navigate to the page after create/edit actions untill the server responce is sucessfull. If the resp is an error, help user to understand what happens.
+14. Consider better UI/UX for delete modal
+15. Add button shouldn't be red, consider the color within project color palette 
+16. Remove all unused vars or imports in all files
+17. Remove all comments in all files
 
 ## Required:
  Node.js 18+

@@ -12,7 +12,6 @@ const SidebarItem = ({ item, child, openedMenu, setOpenedMenu, setShowSidebar })
   const { pathname } = useLocation();
 
   const handleMenuClick = (e) => {
-    // dispatch(getLeadReducer(null))    // to set the currentLead to null whenever page is change to keep the currentLead have a latest value (on runtime).
     e.stopPropagation(); // Prevent event propagation to parent elements
     if (child) {
       return; // Don't close when clicking on sub-link

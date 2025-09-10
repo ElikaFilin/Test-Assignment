@@ -30,7 +30,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateLead = ({ setOpen, open, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching } = useSelector((state) => state.lead);
@@ -80,18 +79,15 @@ const CreateLead = ({ setOpen, open, scroll }) => {
   ];
 
 
-  //////////////////////////////////////// STATES ////////////////////////////////////
   const [leadData, setLeadData] = useState(initialLeadState);
   const [createMultiple, setCreateMultiple] = useState(false);
   const [followUpData, setFollowUpData] = useState(initialFollowUpState);
   const [leadCountsToCreate, setLeadCountsToCreate] = useState(1);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
   useEffect(() => {
     dispatch(getProjects());
   }, []);
 
-  //////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     const {

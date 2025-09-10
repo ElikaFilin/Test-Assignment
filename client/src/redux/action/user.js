@@ -13,7 +13,7 @@ export const register = (userData, navigate) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const login = (userData, navigate) => async (dispatch) => {
@@ -28,7 +28,7 @@ export const login = (userData, navigate) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const changePassword = (passwordData, navigate) => async (dispatch) => {
@@ -41,7 +41,7 @@ export const changePassword = (passwordData, navigate) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const forget_password = (email) => async (dispatch) => {
@@ -53,7 +53,7 @@ export const forget_password = (email) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const newpassword = ({ otp, password }, navigate) => async (dispatch) => {
@@ -70,7 +70,7 @@ export const newpassword = ({ otp, password }, navigate) => async (dispatch) => 
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const logout = (navigate) => async (dispatch) => {
@@ -83,7 +83,7 @@ export const logout = (navigate) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const getUsers = () => async (dispatch) => {
@@ -95,7 +95,7 @@ export const getUsers = () => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const getClients = () => async (dispatch) => {
@@ -107,7 +107,7 @@ export const getClients = () => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const getEmployeeClients = () => async (dispatch) => {
@@ -119,7 +119,7 @@ export const getEmployeeClients = () => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const getEmployees = () => async (dispatch) => {
@@ -131,7 +131,7 @@ export const getEmployees = () => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const getUser = (userId) => async (dispatch) => {
@@ -143,33 +143,35 @@ export const getUser = (userId) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
-export const createClient = (clientData) => async (dispatch) => {
+export const createClient = (clientData, onSuccess) => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createClient(clientData)
         dispatch(createClientReducer(data.result))
-        navigate('/clients')
+        toast.success("Client created successfully!")
         dispatch(end())
+        if (onSuccess) onSuccess()
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
-export const createEmployee = (employeeData, setOpen) => async (dispatch) => {
+export const createEmployee = (employeeData, onSuccess) => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createEmployee(employeeData)
         dispatch(createEmployeeReducer(data.result))
-        setOpen(false)
+        toast.success("Employee created successfully!")
         dispatch(end())
+        if (onSuccess) onSuccess()
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
 export const updateRole = (userId, role) => async (dispatch) => {
@@ -182,30 +184,34 @@ export const updateRole = (userId, role) => async (dispatch) => {
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
-export const updateUser = (userId, userData, role) => async (dispatch) => {
+export const updateUser = (userId, userData, role, onSuccess) => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.updateUser(userId, userData)
         dispatch(updateUserReducer(data.result))
+        toast.success("User updated successfully!")
         dispatch(end())
+        if (onSuccess) onSuccess()
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }
-export const deleteUser = (userId) => async (dispatch) => {
+export const deleteUser = (userId, onSuccess) => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.deleteUser(userId)
         dispatch(deleteUserReducer(data.result))
+        toast.success("User deleted successfully!")
         dispatch(end())
+        if (onSuccess) onSuccess()
     } catch (err) {
         const message = err?.response?.data?.message || err?.message || "Something went wrong"
         toast.error(message)
-        dispatch(error(err.message))
+        dispatch(end())
     }
 }

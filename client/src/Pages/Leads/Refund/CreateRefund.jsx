@@ -20,7 +20,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateRefund = ({ open, setOpen, scroll }) => {
-  ////////////////////////////////////// VARIABLES /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead: lead } = useSelector(state => state.lead);
   const { isFetching } = useSelector(state => state.refund);
@@ -37,15 +36,12 @@ const CreateRefund = ({ open, setOpen, scroll }) => {
 
   }
 
-  ////////////////////////////////////// STATES /////////////////////////////////////
   const [refundData, setRefundData] = useState(initialRefundData)
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     setRefundData({ ...refundData, clientName: lead?.client?.username })
   }, [lead])
 
-  ////////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleSave = () => {
     const { branch, amount, clientName, phone, reason } = refundData
     if (!amount || !phone || !reason || !branch || !clientName) return alert('Make sure to provide all the fields')

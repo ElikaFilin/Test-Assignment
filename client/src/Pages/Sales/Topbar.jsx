@@ -11,7 +11,6 @@ import { searchSaleReducer } from '../../redux/reducer/sale';
 
 const Topbar = ({ view, setView, open, setOpen, setIsFiltered, isFiltered }) => {
 
-  ///////////////////////////////////////// VARIABLES ////////////////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split('/')[1];
@@ -19,11 +18,9 @@ const Topbar = ({ view, setView, open, setOpen, setIsFiltered, isFiltered }) => 
   const showAddButton = !pathArr.includes('create');
   const descriptionElementRef = React.useRef(null);
 
-  /////////////////////////////////////////STATES ////////////////////////////////////////////////
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  ///////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////////
   useEffect(() => {
     if (openCreateModal) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -33,7 +30,6 @@ const Topbar = ({ view, setView, open, setOpen, setIsFiltered, isFiltered }) => 
     }
   }, [openCreateModal]);
 
-  ///////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchSaleReducer(searchTerm));
   }

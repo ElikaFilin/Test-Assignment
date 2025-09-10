@@ -1,22 +1,17 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Topbar from "./Topbar";
 import { Table } from "../../Components";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getEmployees } from "../../redux/action/user";
 import DeleteEmployee from "./Delete";
 import EditEmployee from "./Edit";
 import { getEmployeesReducer, getUserReducer } from "../../redux/reducer/user";
-import { IconButton, Tooltip } from "@mui/material";
-import { DeleteOutline, EditOutlined } from "@mui/icons-material";
+import { Tooltip } from "@mui/material";
 import { PiTrashLight } from "react-icons/pi";
-import { IoOpenOutline } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
-import Filter from "./Filter";
 import User from "./User";
 
 const Employees = memo(() => {
-  /////////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch();
   const { employees, allEmployees, isFetching, error } = useSelector((state) => state.user);
   const columns = [
@@ -77,13 +72,6 @@ const Employees = memo(() => {
       headerClassName: "super-app-theme--header",
       renderCell: (params) => (
         <div className="flex gap-[10px]">
-          <Tooltip placement="top" title="Delete" arrow>
-            {" "}
-            <PiTrashLight
-              onClick={() => handleOpenDeleteModal(params.row._id)}
-              className="cursor-pointer text-red-500 text-[23px] hover:text-red-400"
-            />
-          </Tooltip>
           <Tooltip placement="top" title="Edit" arrow>
             {" "}
             <CiEdit
@@ -91,20 +79,23 @@ const Employees = memo(() => {
               className="cursor-pointer text-green-500 text-[23px] hover:text-green-600"
             />
           </Tooltip>
+          <Tooltip placement="top" title="Delete" arrow>
+            {" "}
+            <PiTrashLight
+              onClick={() => handleOpenDeleteModal(params.row._id)}
+              className="cursor-pointer text-red-500 text-[23px] hover:text-red-400"
+            />
+          </Tooltip>
         </div>
       ),
     },
   ];
-
-  /////////////////////////////////////// STATES ////////////////////////////////////////
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState("");
   const [openFilters, setOpenFilters] = useState("");
   const [openView, setOpenViewk] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
-
-  /////////////////////////////////////// USE EFFECTS ////////////////////////////////////
   useEffect(() => {
     if (employees.length === 0) {
       dispatch(getEmployees());
@@ -115,12 +106,6 @@ const Employees = memo(() => {
       dispatch(getEmployeesReducer(allEmployees));
     }
   }, [isFiltered]);
-
-  /////////////////////////////////////// FUNCTIONS /////////////////////////////////////
-  const hanldeOpenViewModal = (taskId) => {
-    setSelectedUserId(taskId);
-    setOpenViewk(true);
-  };
   const handleOpenEditModal = (employee) => {
     dispatch(getUserReducer(employee));
     setOpenEditModal(true);

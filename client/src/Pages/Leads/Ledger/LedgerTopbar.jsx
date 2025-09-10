@@ -8,17 +8,14 @@ import CreateCashBook from "../../CashBook/CreateCashBook";
 import { searchCashbookReducer } from "../../../redux/reducer/cashbook";
 
 const LedgerTopbar = () => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = React.useState("paper");
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -28,7 +25,6 @@ const LedgerTopbar = () => {
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchCashbookReducer(searchTerm));
   }

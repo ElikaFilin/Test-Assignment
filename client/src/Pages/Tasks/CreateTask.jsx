@@ -25,7 +25,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateTask = ({ open, setOpen, openFromNavbar, setOpenFromNavbar }) => {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const { isFetching, error } = useSelector((state) => state.task);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,12 +38,9 @@ const CreateTask = ({ open, setOpen, openFromNavbar, setOpenFromNavbar }) => {
     newTaskComment: "",
   };
 
-  ////////////////////////////////////// STATES ///////////////////////////////////
   const [taskData, setTaskData] = useState(initialTaskState);
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
 
-  ////////////////////////////////////// FUNCTION /////////////////////////////////
   const handleSubmit = (e) => {
     const {
       completedTask,

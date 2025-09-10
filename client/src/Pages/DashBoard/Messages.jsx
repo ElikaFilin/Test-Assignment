@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const Messages = ({}) => {
 
-  /////////////////////////////////////// VARIABLES ////////////////////////////////////
   const { loggedUser } = useSelector((state) => state.user);
   const messages = [
     { text: "Hi there!", sender: "bot" },
@@ -16,10 +15,8 @@ const Messages = ({}) => {
     { text: "Waiting....", sender: `${loggedUser?.username[0]}` },
   ];
 
-  /////////////////////////////////////// STATES ///////////////////////////////////////
   const [input, setInput] = React.useState("");
 
-  /////////////////////////////////////// FUNCTIONS ////////////////////////////////////
   const handleSend = () => {
     if (input.trim() != "") {
       setInput("");

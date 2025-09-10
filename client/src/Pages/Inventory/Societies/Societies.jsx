@@ -19,7 +19,6 @@ import { Archive, Unarchive } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
 
 function Societies() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const descriptionElementRef = React.useRef(null);
   const dispatch = useDispatch();
   const { pathname } = useLocation()
@@ -120,7 +119,6 @@ function Societies() {
   const unarchivedSocieties = societies.filter(society => !society.isArchived)
   const archivedSocieties = societies.filter(society => society.isArchived)
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [scroll, setScroll] = useState("paper");
   const [openViewModel, setOpenViewModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -134,7 +132,6 @@ function Societies() {
     showArchivedSocieties: false,
   });
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     dispatch(getSocieties());
   }, [options.showArchivedSocieties, pathname]);
@@ -152,7 +149,6 @@ function Societies() {
     }
   }, [isFiltered])
 
-  ////////////////////////////////////// FUNCTION //////////////////////////////\
   const handleOpenStatusModal = (society) => {
     setOpenStatusModal(true);
     dispatch(getSocietyReducer(society));

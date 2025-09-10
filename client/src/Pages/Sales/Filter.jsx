@@ -9,7 +9,6 @@ import { filterSaleReducer } from "../../redux/reducer/sale";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
 
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const dispatch = useDispatch()
   const { employees } = useSelector(state => state.user)
   const initialFilterState = {
@@ -25,12 +24,9 @@ const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
     top: '',
   }
 
-  //////////////////////////////////////// STATES ////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState)
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////
 
-  //////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////
   const handleChange = (field, value) => {
     setFilters(pre => ({ ...pre, [field]: value }))
   }

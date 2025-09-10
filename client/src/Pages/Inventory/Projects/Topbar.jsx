@@ -11,7 +11,6 @@ import { searchProject } from "../../../redux/action/project";
 import CreateProject from "./CreateProject";
 
 const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, setIsFiltered }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
@@ -19,24 +18,20 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
   const showOptionButtons = !pathArr.includes("create");
   const { projects } = useSelector((state) => state.project);
   const dispatch = useDispatch();
-  // Count occurrences of each status
   const statusCounts = projects.reduce((acc, project) => {
     acc[project.status] = (acc[project.status] || 0) + 1;
     return acc;
   }, {});
   const allStatusOptions = ["notStarted", "onHold", "completed", "inProgress"];
-  // Transform the status counts into the desired format
   const statusArray = allStatusOptions.map((status) => ({
     name: status,
     counts: statusCounts[status] || 0,
   }));
   const descriptionElementRef = React.useRef(null);
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
 
   useEffect(() => {
     if (open) {
@@ -47,7 +42,6 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchProject(searchTerm, options.showArchivedSocieties));
   };

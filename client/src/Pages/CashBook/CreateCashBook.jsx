@@ -45,7 +45,6 @@ function CreateCashBook({ open, setOpen, scroll }) {
 
   const [cashbookData, setCashbookData] = useState(initialCashbookState);
 
-  ///////////////////////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////////
   useEffect(() => {
     dispatch(getEmployees())
     dispatch(getClients())
@@ -55,14 +54,12 @@ function CreateCashBook({ open, setOpen, scroll }) {
   }, [lead])
 
 
-  ///////////////////////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////////
 
   const handleChange = (field, value) => {
     setCashbookData((pre) => ({ ...pre, [field]: value }));
   };
 
   const handleSubmit = (e) => {
-    // clientName, top, remarks, amount, type, staff
     const { staff, clientName, remarks, top, amount, type } = cashbookData
     if (!staff || !clientName || !remarks || !top || !amount || !type) return alert("Make sure to provide all the fields")
 

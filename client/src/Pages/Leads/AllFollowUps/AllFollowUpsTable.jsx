@@ -12,25 +12,21 @@ import { useNavigate } from "react-router-dom";
 import { Loader } from "../../../utils";
 
 const AllFollowUpsTable = () => {
-  /////////////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////
   const dispatch = useDispatch();
   const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const { followUpsStats, isFetching } = useSelector((state) => state.followUp);
   const { loggedUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  /////////////////////////////////////////////////// STATES ////////////////////////////////////////////////
   const [showLead, setShowLead] = useState(false);
   const [selectedLeadId, setSelectedLeadId] = useState(false);
 
-  /////////////////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////////
   useEffect(() => {
     loggedUser.role == "employee"
       ? dispatch(getEmployeeFollowUpsStats())
       : dispatch(getFollowUpsStats());
   }, []);
 
-  /////////////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////
   const createData = (date, day, followUps = []) => {
     return {
       date,
@@ -60,7 +56,6 @@ const AllFollowUpsTable = () => {
     const year = parseInt(dateParts[2]);
     const inputDate = new Date(year, month, day);
 
-    // Extract the date parts of the current date
     const currentDate = new Date();
     const currentDateWithoutTime = new Date(
       currentDate.getFullYear(),
@@ -68,14 +63,9 @@ const AllFollowUpsTable = () => {
       currentDate.getDate()
     );
 
-    // Compare dates without time
     return inputDate >= currentDateWithoutTime;
   });
 
-  // const sortedRow = rows
-  // .filter(item => new Date(item.date) <= currentDate) // Filter out dates greater than current date
-  // .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date
-  // .reverse()  // Reverse the order so that latest date comes first
 
   const columns = [
     {

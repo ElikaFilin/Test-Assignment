@@ -13,7 +13,6 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { searchTaskReducer } from "../../redux/reducer/task";
 
 const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, setIsFiltered }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
@@ -21,29 +20,24 @@ const Topbar = ({ options, setOptions, openFilters, setOpenFilters, isFiltered, 
   const showOptionButtons = !pathArr.includes("create");
   const { tasks } = useSelector((state) => state.task);
   const dispatch = useDispatch();
-  // Count occurrences of each status
   const statusCounts = tasks.reduce((acc, task) => {
     acc[task.status] = (acc[task.status] || 0) + 1;
     return acc;
   }, {});
   const allStatusOptions = ["new", "overDue", "completed", "inProgress"];
-  // Transform the status counts into the desired format
   const statusArray = allStatusOptions.map((status) => ({
     name: status,
     counts: statusCounts[status] || 0,
   }));
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [showStatBar, setShowStatBar] = useState(true);
   const [open, setOpen] = useState(false);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     options?.showEmployeeTasks && dispatch(getTasks());
     !options?.showArchivedTasks && !options?.showEmployeeTasks && dispatch(getTasks());
   }, [options]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchTaskReducer(searchTerm));
   }

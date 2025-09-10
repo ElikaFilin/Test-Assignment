@@ -20,15 +20,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditSociety = ({ open, setOpen, scroll }) => {
-  //////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const dispatch = useDispatch();
   const { currentSociety: society, isFetching } = useSelector((state) => state.society);
   const { urls } = useSelector((state) => state.upload);
 
-  //////////////////////////////////////// STATES ////////////////////////////////////////////
   const [societyData, setSocietyData] = useState(society);
 
-  //////////////////////////////////////// USE EFFEECT ////////////////////////////////////////////
   useEffect(() => {
     setSocietyData(society);
   }, [society]);
@@ -36,7 +33,6 @@ const EditSociety = ({ open, setOpen, scroll }) => {
     setSocietyData({ ...societyData, images: urls });
   }, [urls]);
 
-  //////////////////////////////////////// FUNCTION ////////////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateSociety(society._id, { ...societyData }));

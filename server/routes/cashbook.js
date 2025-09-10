@@ -4,7 +4,6 @@ import { verifyEmployee, verifyManager, verifyToken } from '../middleware/auth.j
 
 const router = express.Router()
 
-// GET
 router.get('/get/single/:cashbookId', verifyToken, verifyEmployee, getCashbook)
 router.get('/get/all', verifyToken, verifyEmployee, getCashbooks)
 router.get('/get/employee', verifyToken, verifyEmployee, getEmployeeCashbooks)
@@ -13,10 +12,8 @@ router.get('/get/date/:date', verifyToken, verifyEmployee, getSpecificDateCashbo
 router.get('/get/income_and_expenses', getIncomeAndExpenses)
 router.get('/get/payments', verifyToken, verifyEmployee, getPaymentsStat)
 
-// POST
 router.post('/create', verifyToken, verifyEmployee, createCashbook)
 
-// DELETE
 router.delete('/delete/:cashbookId', verifyToken, verifyEmployee, deleteCashbook)
 router.delete('/delete-whole-collection', verifyToken, verifyEmployee, deleteWholeCollection)
 

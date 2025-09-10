@@ -36,21 +36,17 @@ export const filterUser = async (req, res, next) => {
     try {
         let query = await User.find(filters)
 
-        // Check if startingDate is provided and valid
         if (startingDate && isValidDate(startingDate)) {
             const startDate = new Date(startingDate);
             startDate.setHours(0, 0, 0, 0);
 
-            // Add createdAt filtering for startingDate
             query = query.where('createdAt').gte(startDate);
         }
 
-        // Check if endingDate is provided and valid
         if (endingDate && isValidDate(endingDate)) {
             const endDate = new Date(endingDate);
             endDate.setHours(23, 59, 59, 999);
 
-            // Add createdAt filtering for endingDate
             if (query.model.modelName === 'User') { // Check if the query has not been executed yet
                 query = query.where('createdAt').lte(endDate);
             }
@@ -83,7 +79,6 @@ export const getEmployeeClients = async (req, res, next) => {
         let allClients = await User.find({ role: 'client' })
         const employeeLeads = await Lead.find({ allocatedTo: { $in: req.user?._id }, isArchived: false })
 
-        // Filter clients based on the condition
         allClients = allClients.filter((client) => {
             return employeeLeads.findIndex(lead => lead.clientPhone.toString() === client.phone.toString()) !== -1
         });

@@ -19,7 +19,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const ShowDeductions = ({ open, setOpen }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////
 
   const dispatch = useDispatch();
   const { deductions } = useSelector((state) => state.deduction);
@@ -29,11 +28,9 @@ const ShowDeductions = ({ open, setOpen }) => {
     NSalary: "",
   };
 
-  ////////////////////////////////////////// STATES /////////////////////////////////////
   const [deductionsData, setDeductionsData] = useState(deductions);
   const [openChangeModel, setOpenChangeModel] = useState(false);
 
-  ////////////////////////////////////////// USE EFFECTS /////////////////////////////////
   useEffect(() => {
     dispatch(getDeductions());
   }, []);
@@ -42,7 +39,6 @@ const ShowDeductions = ({ open, setOpen }) => {
     setDeductionsData(deductions);
   }, [deductions]);
 
-  ////////////////////////////////////////// FUNCTIONS ///////////////////////////////////
 
   const handleChange = (field, value) => {
     setDeductionsData({ ...deductionsData, [field]: value });

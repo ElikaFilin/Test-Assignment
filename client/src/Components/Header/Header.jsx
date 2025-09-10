@@ -50,7 +50,6 @@ import { Link, Outlet } from "react-router-dom";
 import clsx from "clsx";
 
 const Header = () => {
-  ////////////////////////////////////// VARIABLES ////////////////////////////////////////
   const drawerWidth = 240;
   const theme = useTheme();
   const linksArray = [
@@ -116,13 +115,11 @@ const Header = () => {
     },
   ];
 
-  ////////////////////////////////////// STATES ///////////////////////////////////////////
   const [date, setDate] = useState(new Date());
   const [state, setState] = useState({ right: false });
   const [open, setOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(1);
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////////////
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000);
 
@@ -131,7 +128,6 @@ const Header = () => {
     };
   });
 
-  ////////////////////////////////////// FUNCTIONS ////////////////////////////////////////
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) return;
     setState({ ...state, [anchor]: open });
@@ -146,7 +142,6 @@ const Header = () => {
     setOpen(false);
   };
 
-  ////////////////////////////////////// COMPONENTS ///////////////////////////////////////
   const Notifications = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 350 }} // Drawer Width
@@ -177,7 +172,6 @@ const Header = () => {
     </Box>
   );
 
-  ////////////////////////////////////// STYLESD COMPONENTS ////////////////////////////////
   const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -202,7 +196,6 @@ const Header = () => {
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   }));
   const AppBar = styled(MuiAppBar, {

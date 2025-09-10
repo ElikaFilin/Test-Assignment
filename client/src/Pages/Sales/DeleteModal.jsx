@@ -5,11 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const DeleteModal = ({ open, setOpen, saleId }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch()
   const { isFetching, error } = useSelector(state => state.sale)
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false)
   }

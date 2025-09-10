@@ -94,13 +94,10 @@ const usersSlice = createSlice({
                     const userValue = user[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if userValue is in filterValue)
                         return filterValue.includes(userValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if userValue includes filterValue)
                         return String(userValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return userValue === filterValue;
                     }
                 });
@@ -131,13 +128,10 @@ const usersSlice = createSlice({
                     const userValue = user[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if userValue is in filterValue)
                         return filterValue.includes(userValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if userValue includes filterValue)
                         return String(userValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return userValue === filterValue;
                     }
                 });

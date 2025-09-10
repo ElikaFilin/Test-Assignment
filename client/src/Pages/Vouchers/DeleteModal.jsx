@@ -5,11 +5,9 @@ import { deleteVoucher } from '../../redux/action/voucher'
 
 const DeleteModal = ({ open, setOpen, voucherId }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const { isFetching } = useSelector(state => state.voucher)
   const dispatch = useDispatch()
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false)
   }

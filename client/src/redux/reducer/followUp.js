@@ -45,13 +45,10 @@ const followUpSlice = createSlice({
                     const followUpValue = followUp[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if followUpValue is in filterValue)
                         return filterValue.includes(followUpValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if followUpValue includes filterValue)
                         return String(followUpValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return followUpValue === filterValue;
                     }
                 });

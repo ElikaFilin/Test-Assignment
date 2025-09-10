@@ -93,18 +93,15 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 const ClientNavbar = () => {
-  /////////////////////////////////////////// VARIABLES ////////////////////////////////////////////
   const { loggedUser } = useSelector((state) => state.user);
   const { notifications } = useSelector((state) => state.notification);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /////////////////////////////////////////// STATES ////////////////////////////////////////////////
   const [date, setDate] = useState(new Date());
   const [openPasswordChange, setOpenPasswordChange] = useState(false);
 
-  /////////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000);
 
@@ -113,7 +110,6 @@ const ClientNavbar = () => {
     };
   });
 
-  /////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////
   const handleLogout = () => {
     dispatch(logout(navigate));
   };

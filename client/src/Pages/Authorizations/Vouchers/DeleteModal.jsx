@@ -5,10 +5,8 @@ import { useDispatch } from 'react-redux'
 
 const DeleteModal = ({ open, setOpen, approvalId }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch()
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false)
   }

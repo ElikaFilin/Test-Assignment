@@ -22,19 +22,16 @@ export const getNotifications = async (req, res, next) => {
         const oneDayAhead = new Date();
         oneDayAhead.setDate(oneDayAhead.getDate() + 1);
 
-        // Find urgent tasks due within one day
         const urgentTasks = await Task.find({ dueDate: oneDayAhead });
 
         const taskNotifications = await Promise.all(
             urgentTasks.map(async (task) => {
-                // Check if a notification already exists for this task
                 const existingNotification = await Notification.findOne({
                     type: 'urgent-task',
                     'data._id': task._id,
                 });
 
                 if (!existingNotification) {
-                    // Create a notification object with the required fields
                     const notification = new Notification({
                         title: 'Task Urgency',
                         description: 'A task is about to reach its due date.',

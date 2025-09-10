@@ -17,7 +17,6 @@ const verifyIsAllocatedTo = async (req, res, next) => {
     }
 }
 
-// GET
 router.get('/get/single/:leadId', getLead)
 router.get('/get/phone/:phone', getLeadByPhone)
 router.get('/get/employee', verifyToken, verifyEmployee, getEmployeeLeads)
@@ -27,16 +26,13 @@ router.get('/get/stats', verifyToken, verifyEmployee, getLeadsStat)
 router.get('/search', verifyToken, searchLead)
 router.get('/filter', verifyToken, filterLead)
 
-// POST
 router.post('/create', verifyToken, createLead)
 
-// PUT
 router.put('/archive', verifyToken, verifyEmployee, archiveLead)
 router.put('/update/:leadId', verifyToken, verifyEmployee, updateLead)
 router.put('/update/shift/:leadId', verifyToken, verifyEmployee, shiftLead)
 router.put('/update/share/:leadId', verifyToken, verifyEmployee, shareLead)
 
-// DELETE
 router.delete('/delete/:leadId', verifyToken, verifySuperAdmin, verifyManager, deleteLead)
 router.delete('/delete-whole-collection', deleteWholeCollection)
 

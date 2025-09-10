@@ -20,7 +20,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const CreateTranscript = ({ open, setOpen, scroll }) => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////
   const dispatch = useDispatch();
   const { employees } = useSelector((state) => state.user);
   const { isFetching } = useSelector((state) => state.transcript);
@@ -53,10 +52,8 @@ const CreateTranscript = ({ open, setOpen, scroll }) => {
     "November",
     "December",
   ];
-  ////////////////////////////////////////// STATES /////////////////////////////////////
   const [transcriptData, setTranscriptData] = useState(initialState);
 
-  ////////////////////////////////////////// USE EFFECTS /////////////////////////////////
 
   useEffect(() => {
     dispatch(getDeductions());
@@ -66,7 +63,6 @@ const CreateTranscript = ({ open, setOpen, scroll }) => {
     dispatch(getEmployees());
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS ///////////////////////////////////
 
   const handleSubmit = (e) => {
     e.preventDefault();

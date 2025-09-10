@@ -9,19 +9,16 @@ import { searchRefundReducer } from "../../../redux/reducer/refund";
 import { useDispatch, useSelector } from "react-redux";
 
 const Topbar = () => {
-  ////////////////////////////////////////// VARIABLES //////////////////////////////////////
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const {loggedUser} = useSelector(state=>state.user)
   const title = pathname.split("/")[1];
 
-  ////////////////////////////////////////// STATES //////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
   const descriptionElementRef = useRef(null);
 
-  ////////////////////////////////////////// USE EFFECTS //////////////////////////////////
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -31,7 +28,6 @@ const Topbar = () => {
     }
   }, [open]);
 
-  ////////////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleSearch = (searchTerm) => {
     dispatch(searchRefundReducer(searchTerm));
   };

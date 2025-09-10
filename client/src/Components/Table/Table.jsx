@@ -9,9 +9,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 
 const Table = ({ columns, rows, isFetching, error, rowsPerPage }) => {
-  //////////////////////////////////////// VARIABLES ///////////////////////////////////
 
-  //////////////////////////////////////// STATES //////////////////////////////////////
   const [searchValue, setSearchValue] = useState("");
   const [state, setState] = React.useState({
     open: false,
@@ -20,7 +18,6 @@ const Table = ({ columns, rows, isFetching, error, rowsPerPage }) => {
   });
   const { vertical, horizontal, open } = state;
 
-  //////////////////////////////////////// FUNCTIONS ///////////////////////////////////
   const handleClick = (newState) => () => {
     setState({ ...newState, open: true });
   };

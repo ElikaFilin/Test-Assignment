@@ -8,22 +8,17 @@ import { searchVoucherReducer } from "../../redux/reducer/voucher";
 
 const Topbar = (view, setView) => {
 
-  //////////////////////////////////// VARIABLES ///////////////////////////////////////////////
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const title = pathname.split("/")[1];
   const pathArr = pathname.split("/").filter((item) => item != "");
   const showAddButton = !pathArr.includes("create");
 
-  //////////////////////////////////// STATES ///////////////////////////////////////////////
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
-  //////////////////////////////////// USE EFFECTS ///////////////////////////////////////////////
 
-  //////////////////////////////////// FUNCTIONS ///////////////////////////////////////////////
   const handleSearch = (searchTerm) => {
-    // dispatch(searchVoucherReducer(searchTerm));
   }
   const handleAddClick = () => {
     navigate(`${pathname}/create`);

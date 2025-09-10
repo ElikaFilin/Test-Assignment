@@ -5,11 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const DeleteInventory = ({ open, setOpen, inventoryId, scroll }) => {
 
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch()
   const { isFetching } = useSelector(state => state.inventory)
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false)
   }

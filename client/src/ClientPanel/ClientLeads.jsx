@@ -12,7 +12,6 @@ import ViewAttachments from "./ViewAttachments";
 import { Empty } from "../Components";
 
 const ClientLeads = () => {
-  /////////////////////////////////////////////////////////////////// VARIABLES ///////////////////////////////////////////////////////////////////
 
   const dispatch = useDispatch();
   const { leads, isFetching, error } = useSelector((state) => state.lead);
@@ -105,7 +104,6 @@ const ClientLeads = () => {
     },
   ];
 
-  /////////////////////////////////////////////////////////////////// STATES ///////////////////////////////////////////////////////////////////
   const [searchValue, setSearchValue] = useState("");
   const [selectedLeadId, setSelectedLeadId] = useState(null);
   const [openAttachments, setOpenAttachments] = useState(false);
@@ -116,12 +114,10 @@ const ClientLeads = () => {
   });
   const { vertical, horizontal, open } = state;
 
-  /////////////////////////////////////////////////////////////////// USE EFFECTS ///////////////////////////////////////////////////////////////
   useEffect(() => {
     dispatch(getLeadByPhone(phoneNumber));
   }, []);
 
-  /////////////////////////////////////////////////////////////////// FUNCTIONS ///////////////////////////////////////////////////////////////////
   const handleClick = (newState) => () => {
     setState({ ...newState, open: true });
   };
@@ -136,7 +132,6 @@ const ClientLeads = () => {
   };
 
 
-  /////////////////////////////////////////////////////////////////// RENDER ///////////////////////////////////////////////////////////////
   return (
     <div className="w-full">
       {isFetching && (
@@ -161,10 +156,6 @@ const ClientLeads = () => {
           <div className="w-full h-[11rem] flex justify-center items-center ">
             <Loader />
           </div>
-          // :
-          // leads?.length === 0 ? (
-          //   <Empty title='No leads found.' />
-          // )
           :
           (
             <div className="flex flex-col gap-[8px]">

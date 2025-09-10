@@ -43,13 +43,10 @@ const eventSlice = createSlice({
                     const eventValue = event[key];
 
                     if (Array.isArray(filterValue)) {
-                        // Handle array filters (e.g., checking if eventValue is in filterValue)
                         return filterValue.includes(eventValue);
                     } else if (typeof filterValue === 'string') {
-                        // Handle string filters (e.g., checking if eventValue includes filterValue)
                         return String(eventValue).toLowerCase().includes(filterValue.toLowerCase());
                     } else {
-                        // Handle other types of filters (e.g., equality checks)
                         return eventValue === filterValue;
                     }
                 });

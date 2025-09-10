@@ -90,7 +90,6 @@ const StyledMenuItem = styled(MenuItem)(
 );
 
 function Inventory() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const descriptionElementRef = React.useRef(null);
   const dispatch = useDispatch();
   const { inventories, allInventories, isFetching, error } = useSelector((state) => state.inventory);
@@ -234,7 +233,6 @@ function Inventory() {
   const unarchivedInventories = inventories.filter(inventory => !inventory.isArchived)
   const archivedInventories = inventories.filter(inventory => inventory.isArchived)
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [scroll, setScroll] = useState("paper");
   const [openViewModel, setOpenViewModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -248,7 +246,6 @@ function Inventory() {
     showArchivedInventories: false,
   });
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     loggedUser?.role == 'employee'
       ?
@@ -270,7 +267,6 @@ function Inventory() {
       dispatch(getInventoriesReducer(allInventories))
     }
   }, [isFiltered])
-  ////////////////////////////////////// FUNCTION //////////////////////////////\
   const handleOpenStatusModal = (inventory) => {
     setOpenStatusModal(true);
     dispatch(getInventoryReducer(inventory));

@@ -9,7 +9,6 @@ import moment from "moment";
 
 const FollowUps = () => {
 
-  /////////////////////////////////////////// VARIABLES //////////////////////////////////////////// 
   const { followUps, isFetching } = useSelector(state => state.followUp)
   const { loggedUser } = useSelector(state => state.user)
   const { leadId } = useParams()
@@ -54,9 +53,7 @@ const FollowUps = () => {
   ];
 
 
-  /////////////////////////////////////////// STATES //////////////////////////////////////////// 
 
-  /////////////////////////////////////////// USE EFFECTS //////////////////////////////////////////// 
   useEffect(() => {
     loggedUser.role == 'employee'
       ?
@@ -65,7 +62,6 @@ const FollowUps = () => {
       dispatch(getFollowUps(leadId))
   }, [])
 
-  /////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////// 
 
 
   return (

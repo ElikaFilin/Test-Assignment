@@ -12,7 +12,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { filterTaskReducer } from "../../redux/reducer/task";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
-  ///////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const { tasks } = useSelector(state => state.task)
   const initialFilterState = {
@@ -25,10 +24,8 @@ const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
     endingNewTaskDeadline: '',
   }
 
-  ///////////////////////////////////////////// STATES ////////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState);
 
-  ///////////////////////////////////////////// FUNCTIONS ////////////////////////////////////////////////////
   const handleChange = (field, value) => {
     setFilters((pre) => ({ ...pre, [field]: value, }));
   };

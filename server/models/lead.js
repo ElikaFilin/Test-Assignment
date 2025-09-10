@@ -20,17 +20,14 @@ const leadSchema = Schema({
 }, { timestamps: true })
 
 
-// Before saving a new document, generate a unique readable identifier
 leadSchema.pre('save', async function (next) {
     if (!this.uid) {
         let isUnique = false;
         let generatedIdentifier;
 
         while (!isUnique) {
-            // Generate a unique identifier (you can use a library for this)
             generatedIdentifier = generateUniqueIdentifier();
 
-            // Check if it's unique in the collection
             const existingDocument = await this.constructor.findOne({ uid: generatedIdentifier });
 
             if (!existingDocument) {
@@ -38,7 +35,6 @@ leadSchema.pre('save', async function (next) {
             }
         }
 
-        // Assign the generated identifier to the document
         this.uid = generatedIdentifier;
     }
     next();

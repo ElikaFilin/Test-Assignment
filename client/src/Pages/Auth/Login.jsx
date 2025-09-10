@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/action/user";
-import { PiEyeSlashThin, PiEyeThin, PiX } from "react-icons/pi";
+import { PiEyeSlashThin, PiEyeThin } from "react-icons/pi";
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -11,20 +11,16 @@ const Login = () => {
     opacity: 0,
   };
 
-  /////////////////////////////////// VARIABLES /////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
 
-  /////////////////////////////////// STATES /////////////////////////////////////
   const [userData, setUserData] = useState({ username: "super_admin", password: "password" });
   const [inputError, setInputError] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordButton, setShowPasswordButton] = useState(PasswordButtonInitialStyle);
 
-  /////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  /////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleChange = (e) => {
     setUserData((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };

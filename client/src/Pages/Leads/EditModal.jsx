@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const EditModal = ({ open, setOpen, scroll, leadId }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const dispatch = useDispatch();
   const { currentLead, isFetching } = useSelector((state) => state.lead);
   const { employees, loggedUser } = useSelector((state) => state.user);
@@ -78,14 +77,12 @@ const EditModal = ({ open, setOpen, scroll, leadId }) => {
     source: "",
     description: "",
   };
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [leadData, setLeadData] = useState({
     ...currentLead,
     clientName: currentLead?.client?.clientName,
     clientPhone: currentLead?.client?.phone,
   });
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     setLeadData({
       ...currentLead,
@@ -98,7 +95,6 @@ const EditModal = ({ open, setOpen, scroll, leadId }) => {
     leadId && dispatch(getLead(leadId));
   }, [leadId]);
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
     const {

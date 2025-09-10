@@ -17,16 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { forget_password } from "../../redux/action/user";
 
 const ForgotPassword = () => {
-  /////////////////////////////////// VARIABLES /////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /////////////////////////////////// STATES /////////////////////////////////////
   const [email, setEmail] = useState({ email: "" });
 
-  /////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  /////////////////////////////////// FUNCTIONS //////////////////////////////////
 
   const handleInputChange = (e) => {
     setEmail({

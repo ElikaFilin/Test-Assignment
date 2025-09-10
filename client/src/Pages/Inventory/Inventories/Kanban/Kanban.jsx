@@ -6,7 +6,6 @@ import { updateInventory } from "../../../../redux/action/inventory";
 import { Loader } from "../../../../utils";
 
 const Kanban = ({ options, setOptions }) => {
-  /////////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch();
   const { inventories, isFetching } = useSelector((state) => state.inventory);
   const archivedInventories = inventories.filter(inventory => inventory.isArchived)
@@ -18,11 +17,9 @@ const Kanban = ({ options, setOptions }) => {
   };
   const statusEnum = ["sold", "unsold", "underProcess"];
 
-  /////////////////////////////////////// STATE ////////////////////////////////////////
   let [filteredInventories, setFilteredInventories] = useState(initialFilteredInventoriesState);
   const { sold, unsold, underProcess } = filteredInventories;
 
-  /////////////////////////////////////// USE EFFECT /////////////////////////////////////
   useEffect(() => {
     statusEnum.forEach(
       (status) =>
@@ -33,21 +30,17 @@ const Kanban = ({ options, setOptions }) => {
     setFilteredInventories({ ...filteredInventories });
   }, []);
 
-  /////////////////////////////////////// FUNCTION ///////////////////////////////////////
   const handleDragEnd = (result) => {
     if (!result.destination) return;
 
-    // Determine the source and destination columns
     const sourceColumn = getSourceColumn(result.source.droppableId);
     const destinationColumn = getSourceColumn(result.destination.droppableId);
 
-    // Move the dragged inventory from the source to the destination column
     const draggedInventory = sourceColumn.inventories[result.source.index];
     filteredInventories[sourceColumn.title].splice(result.source.index, 1);
     filteredInventories[destinationColumn.title].splice(result.destination.index, 0, draggedInventory);
     setFilteredInventories({ ...filteredInventories });
 
-    // upating inventory status in backend/database
     dispatch(updateInventory(draggedInventory._id, { status: destinationColumn.title }));
   };
 

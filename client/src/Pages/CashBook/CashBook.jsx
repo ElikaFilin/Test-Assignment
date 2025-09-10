@@ -11,7 +11,6 @@ import { format } from "timeago.js";
 import { PiTrashLight, PiTrashThin } from "react-icons/pi";
 
 function CashBook() {
-  ///////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch();
   const { cashbooks, isFetching, error } = useSelector((state) => state.cashbook);
   const { loggedUser } = useSelector((state) => state.user);
@@ -66,13 +65,6 @@ function CashBook() {
       width: 140,
       renderCell: (params) => <div className="font-primary">{params.row.amount}</div>,
     },
-    // {
-    //   field: "branch",
-    //   headerName: "Branch",
-    //   headerClassName: "super-app-theme--header",
-    //   width: 190,
-    //   renderCell: (params) => <div className="font-primary">{params.row.branch}</div>,
-    // },
     {
       field: "action",
       headerName: "Action",
@@ -93,11 +85,9 @@ function CashBook() {
   const cashbooksIn = cashbooks.filter(cashbook => cashbook.type == 'in')
   const cashbooksOut = cashbooks.filter(cashbook => cashbook.type == 'out')
 
-  ///////////////////////////////////// STATES //////////////////////////////////////
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [cashbookId, setCashbookId] = useState("");
 
-  ///////////////////////////////////// USE EFFECTS //////////////////////////////////////
   useEffect(() => {
     loggedUser.role == 'employee'
       ?
@@ -106,7 +96,6 @@ function CashBook() {
       dispatch(getCashbooks());
   }, []);
 
-  ///////////////////////////////////// FUNCTIONS //////////////////////////////////////
   const handleOpenDeleteModal = (cId) => {
     setCashbookId(cId);
     setOpenDeleteModal(true);

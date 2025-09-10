@@ -12,11 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTranscript } from "../../redux/action/transcript";
 
 const DeleteTranscript = ({ open, setOpen, transcriptId }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.transcript);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false);
   };

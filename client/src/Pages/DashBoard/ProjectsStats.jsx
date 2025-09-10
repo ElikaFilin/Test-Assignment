@@ -9,7 +9,6 @@ const Projects = () => {
     const { stats: projectsStats, isFetching } = useSelector(state => state.project)
 
     useEffect(() => {
-        // dispatch(getUserAssignedProjectsStats())
     }, [])
 
     return (

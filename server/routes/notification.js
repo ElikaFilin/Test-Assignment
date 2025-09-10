@@ -6,14 +6,11 @@ import { getNotification, getNotifications,  createRequestNotification, deleteNo
 const router = express.Router()
 logger()
 
-// GET
 router.get('/get/single/:notificationId', getNotification)
 router.get('/get/all', getNotifications)
 
-// POST
 router.post('/create/request', createRequestNotification)
 
-// DELETE
 router.delete('/delete/:notificationId', deleteNotification)
 router.delete('/delete/whole-collection', deleteWholeCollection)
 

@@ -14,12 +14,10 @@ const Signup = () => {
     opacity: 0,
   };
 
-  /////////////////////////////////// VARIABLES /////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isFetching } = useSelector((state) => state.user);
 
-  /////////////////////////////////// STATES /////////////////////////////////////
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -40,9 +38,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordButton, setShowPasswordButton] = useState(PasswordButtonInitialStyle);
 
-  //////////////////////////////////////// USE EFFECTS ////////////////////////////////
 
-  /////////////////////////////////// FUNCTIONS //////////////////////////////////
   const handleChange = (field, value) => {
     const { firstName, lastName, username, email, phone, password } = userData;
 
@@ -127,7 +123,6 @@ const Signup = () => {
   };
 
 
-  ////////////////////////////////////////////////////////// RENDER //////////////////////////////////////////////////////
   return (
     <div className="font-primary w-full h-full bg-[#F6F9FA]">
       <div className="md:opacity-100 opacity-0 left-0 bottom-[-4%] absolute h-[52%] w-[25%]">

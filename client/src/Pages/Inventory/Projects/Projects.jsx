@@ -16,7 +16,6 @@ import { format } from "timeago.js";
 import { Archive, Unarchive } from "@mui/icons-material";
 
 function Projects() {
-  ////////////////////////////////////// VARIABLES //////////////////////////////
   const descriptionElementRef = React.useRef(null);
   const dispatch = useDispatch();
   const { projects, allProjects, isFetching, error } = useSelector((state) => state.project);
@@ -145,7 +144,6 @@ function Projects() {
   const unarchivedProjects = projects.filter((project) => !project.isArchived);
   const archivedProjects = projects.filter((project) => project.isArchived);
 
-  ////////////////////////////////////// STATES //////////////////////////////
   const [scroll, setScroll] = useState("paper");
   const [openViewModel, setOpenViewModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -159,7 +157,6 @@ function Projects() {
     showArchivedProjects: false,
   });
 
-  ////////////////////////////////////// USE EFFECTS //////////////////////////////
   useEffect(() => {
     dispatch(getProjects());
   }, [options.showArchivedProjects]);
@@ -177,7 +174,6 @@ function Projects() {
       dispatch(getProjectsReducer(allProjects))
     }
   }, [isFiltered])
-  ////////////////////////////////////// FUNCTION //////////////////////////////\
   const handleOpenStatusModal = (project) => {
     setOpenStatusModal(true);
     dispatch(getProjectReducer(project));

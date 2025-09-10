@@ -43,7 +43,6 @@ export const getEmployeeFollowUps = async (req, res, next) => {
     try {
         const { leadId } = req.params;
 
-        // Find all follow-ups related to the given leadId
         const allFollowUps = await FollowUp.find({ leadId }).populate('leadId');
 
         const employeeFollowUps = allFollowUps.filter((followUp) => followUp.leadId?.allocatedTo?.findIndex(allocatedTo => allocatedTo.toString() == req.user._id.toString()) != -1)
@@ -61,67 +60,6 @@ export const getEmployeeFollowUps = async (req, res, next) => {
 
 export const getEmployeeFollowUpsStats = async (req, res, next) => {
     try {
-        // const response = await FollowUp.aggregate([
-        //     {
-        //         $sort: { createdAt: 1 },
-        //     },
-        //     {
-        //         $group: {
-        //             _id: {
-        //                 $dateToString: { format: '%Y-%m-%d', date: '$followUpDate' },
-        //             },
-        //             followUps: { $push: '$$ROOT' },
-        //         },
-        //     },
-        //     {
-        //         $project: {
-        //             _id: 0,
-        //             date: '$_id',
-        //             followUps: 1,
-        //         },
-        //     },
-        //     {
-        //         $unwind: '$followUps'
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: 'leads',
-        //             localField: 'followUps.leadId',
-        //             foreignField: '_id',
-        //             as: 'followUps.lead'
-        //         }
-        //     },
-        //     {
-        //         $unwind: '$followUps.lead'
-        //     },
-        //     {
-        //         $match: {
-        //             'followUps.lead.allocatedTo': req.user._id
-        //         }
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: 'users',
-        //             localField: 'followUps.lead.client',
-        //             foreignField: '_id',
-        //             as: 'followUps.lead.client'
-        //         }
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: 'projects',
-        //             localField: 'followUps.lead.property',
-        //             foreignField: '_id',
-        //             as: 'followUps.lead.property',
-        //         },
-        //     },
-        //     {
-        //         $group: {
-        //             _id: '$date',
-        //             followUps: { $push: '$followUps' }
-        //         }
-        //     },
-        // ]);
 
         const followUps = await FollowUp.find()
             .populate({

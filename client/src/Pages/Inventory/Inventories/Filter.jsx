@@ -15,7 +15,6 @@ import { filterInventoryReducer } from "../../../redux/reducer/inventory";
 
 const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
 
-  //////////////////////////////////////////// VARIABLES /////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const { projects, isFetching: projectsFetching } = useSelector(state => state.project)
   const initialFilterState = {
@@ -28,15 +27,12 @@ const FilterDrawer = ({ open, setOpen, setIsFiltered }) => {
     project: ''
   }
 
-  //////////////////////////////////////////// STATES /////////////////////////////////////////////////////
   const [filters, setFilters] = useState(initialFilterState);
 
-  //////////////////////////////////////////// USE EFFECTS /////////////////////////////////////////////////////
   useEffect(() => {
     dispatch(getProjects())
   }, [])
 
-  //////////////////////////////////////////// FUNCTIONS /////////////////////////////////////////////////////
   const handleChange = (field, value) => {
     setFilters((pre) => ({ ...pre, [field]: value, }));
   };

@@ -12,11 +12,9 @@ import { deleteLead } from "../../redux/action/lead";
 import { useDispatch, useSelector } from "react-redux";
 
 const DeleteModal = ({ open, setOpen, leadId }) => {
-  ////////////////////////////////////// VARIABLES ///////////////////////////////////////
   const dispatch = useDispatch();
   const { isFetching } = useSelector((state) => state.lead);
 
-  ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
   const handleClose = () => {
     setOpen(false);
   };

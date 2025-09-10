@@ -15,14 +15,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Attachments = ({ open, setOpen, leadId }) => {
-  ////////////////////////////////////// VARIABLES  /////////////////////////////////////
   const { urls } = useSelector(state => state.upload)
   const { isFetching, currentLead } = useSelector(state => state.lead)
   const dispatch = useDispatch()
-  ////////////////////////////////////// STATES  /////////////////////////////////////
   const [openImageGallery, setOpenImageGallery] = useState(false);
 
-  ////////////////////////////////////// USE EFFECTS  /////////////////////////////////////
   useEffect(() => {
     if (open) {
       leadId && dispatch(getLead(leadId))
@@ -36,7 +33,6 @@ const Attachments = ({ open, setOpen, leadId }) => {
       setOpen(false)
   }, [currentLead])
 
-  ////////////////////////////////////// FUNCTIONS  /////////////////////////////////////
   const handleClickOpen = () => {
     setOpenImageGallery(true);
   };

@@ -69,11 +69,12 @@ const EditModal = ({ open, setOpen }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">
-                  First Name <span className="text-red-500">*</span>
+                  First Name
                 </label>
                 <TextField
                   size="small"
                   fullWidth
+                  placeholder="Optional"
                   value={employeeData?.firstName}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
                   variant="outlined"
@@ -81,11 +82,12 @@ const EditModal = ({ open, setOpen }) => {
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">
-                  Last Name <span className="text-red-500">*</span>
+                  Last Name
                 </label>
                 <TextField
                   size="small"
                   fullWidth
+                  placeholder="Optional"
                   value={employeeData?.lastName}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
                   variant="outlined"
@@ -134,12 +136,18 @@ const EditModal = ({ open, setOpen }) => {
                   Phone <span className="text-red-500">*</span>
                 </label>
                 <TextField
-                  type="number"
                   size="small"
                   value={employeeData?.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/[^0-9]/g, '');
+                    handleInputChange("phone", value);
+                  }}
                   fullWidth
                   variant="outlined"
+                  inputProps={{
+                    inputMode: 'numeric',
+                    pattern: '[0-9]*'
+                  }}
                 />
               </div>
               <div className="md:col-span-1"></div>

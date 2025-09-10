@@ -10,13 +10,15 @@
 8. Fix Emploee's edit
 9. Enhance UI/UX to not edit email in modal, because of system restrictions
 10. Change the order for action icons: first is edit, second is delete for employees
-11. Review the code in entire repo. What can i improve?
+11. Review the code in entire repo
 12. I see two popup where errors are showen. Leave the appropriate one
 13. Not navigate to the page after create/edit actions untill the server responce is sucessfull. If the resp is an error, help user to understand what happens.
 14. Consider better UI/UX for delete modal
 15. Add button shouldn't be red, consider the color within project color palette 
 16. Remove all unused vars or imports in all files
 17. Remove all comments in all files
+18. Make only email, password, username, phone are required for create and edit
+19. I can type e char in phone field, should be numbers only  
 
 ## Required:
  Node.js 18+

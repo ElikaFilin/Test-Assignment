@@ -29,30 +29,27 @@ const CreateUser = ({ open, setOpen, scroll }) => {
   }
   const [employeeData, setEmployeeData] = useState(initialEmployeeState);
   const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
+    email: "",
     password: "",
+    username: "",
     phone: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { firstName, lastName, username, password, phone, email } = employeeData
+    const { email, password, username, phone } = employeeData
     const newErrors = {};
-    if (!firstName) newErrors.firstName = "First name is required";
-    if (!lastName) newErrors.lastName = "Last name is required";
-    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
     if (!password) newErrors.password = "Password is required";
-    if (!phone) newErrors.phone = "Phone number is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!phone) newErrors.phone = "Phone is required";
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
     setErrors({
-      firstName: "",
-      lastName: "",
-      username: "",
+      email: "",
       password: "",
+      username: "",
       phone: "",
     });
     
@@ -74,20 +71,17 @@ const CreateUser = ({ open, setOpen, scroll }) => {
     let errorMessage = "";
     
     switch (field) {
-      case "firstName":
-        if (!value) errorMessage = "First name is required";
-        break;
-      case "lastName":
-        if (!value) errorMessage = "Last name is required";
-        break;
-      case "username":
-        if (!value) errorMessage = "Username is required";
+      case "email":
+        if (!value) errorMessage = "Email is required";
         break;
       case "password":
         if (!value) errorMessage = "Password is required";
         break;
+      case "username":
+        if (!value) errorMessage = "Username is required";
+        break;
       case "phone":
-        if (!value) errorMessage = "Phone number is required";
+        if (!value) errorMessage = "Phone is required";
         break;
     }
     
@@ -98,10 +92,9 @@ const CreateUser = ({ open, setOpen, scroll }) => {
     setOpen(false);
     setEmployeeData(initialEmployeeState);
     setErrors({
-      firstName: "",
-      lastName: "",
-      username: "",
+      email: "",
       password: "",
+      username: "",
       phone: "",
     });
   };
@@ -134,31 +127,27 @@ const CreateUser = ({ open, setOpen, scroll }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    First Name <span className="text-red-500">*</span>
+                    First Name
                   </label>
                   <TextField
                     size="small"
                     fullWidth
+                    placeholder="Optional"
                     value={employeeData.firstName}
                     onChange={(e) => handleChange('firstName', e.target.value)}
-                    onBlur={() => handleBlur('firstName')}
-                    error={!!errors.firstName}
-                    helperText={errors.firstName}
                     variant="outlined"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Last Name <span className="text-red-500">*</span>
+                    Last Name
                   </label>
                   <TextField
                     size="small"
                     fullWidth
+                    placeholder="Optional"
                     value={employeeData.lastName}
                     onChange={(e) => handleChange('lastName', e.target.value)}
-                    onBlur={() => handleBlur('lastName')}
-                    error={!!errors.lastName}
-                    helperText={errors.lastName}
                     variant="outlined"
                   />
                 </div>
@@ -181,14 +170,16 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                 </div>
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Email
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <TextField
                     size="small"
                     fullWidth
-                    placeholder="Optional"
                     value={employeeData.email}
                     onChange={(e) => handleChange('email', e.target.value)}
+                    onBlur={() => handleBlur('email')}
+                    error={!!errors.email}
+                    helperText={errors.email}
                     variant="outlined"
                   />
                 </div>
@@ -215,15 +206,21 @@ const CreateUser = ({ open, setOpen, scroll }) => {
                     Phone <span className="text-red-500">*</span>
                   </label>
                   <TextField
-                    type="number"
                     size="small"
                     value={employeeData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/[^0-9]/g, '');
+                      handleChange("phone", value);
+                    }}
                     onBlur={() => handleBlur('phone')}
-                    fullWidth
                     error={!!errors.phone}
                     helperText={errors.phone}
+                    fullWidth
                     variant="outlined"
+                    inputProps={{
+                      inputMode: 'numeric',
+                      pattern: '[0-9]*'
+                    }}
                   />
                 </div>
               </div>
